@@ -1,6 +1,21 @@
+import 'zone.js';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app/app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAnimations(),
+  importProvidersFrom(
+  ToastrModule.forRoot({
+    positionClass: 'toast-top-center',
+    preventDuplicates: true,
+    timeOut: 3000,
+  })
+)
+
+  ],
+})
+.catch(err => console.error(err));
