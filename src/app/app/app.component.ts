@@ -28,23 +28,50 @@ interface Project {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-  trigger('fadeInDown', [
-    transition(':enter', [
-      style({ opacity: 0, transform: 'translateY(-20px)' }),
-      animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-    ])
-  ]),
-  trigger('fadeInUpStagger', [
-    transition(':enter', [
-      query('.stagger-item', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        stagger(100, [
-          animate('600ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-        ])
-      ])
-    ])
-  ])
-]
+    trigger('fadeInDown', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate(
+          '600ms ease-out',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
+    ]),
+    trigger('fadeSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate(
+          '400ms ease-out',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
+      transition(':leave', [
+        animate(
+          '300ms ease-in',
+          style({ opacity: 0, transform: 'translateY(-10px)' })
+        ),
+      ]),
+    ]),
+    trigger('listStagger', [
+      transition(':enter', [
+        query('li', [
+          style({ opacity: 0, transform: 'translateX(-10px)' }),
+          stagger(300, [
+            animate(
+              '400ms ease-out',
+              style({ opacity: 1, transform: 'translateX(0)' })
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+    trigger('fadeScaleIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.8)' }),
+        animate('600ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
   @ViewChild('modalContato') modalContato!: TemplateRef<any>;
@@ -130,4 +157,11 @@ export class AppComponent {
         this.toastr.error('Erro ao copiar!');
       });
   }
+
+  visibleSections = {
+    inicio: false,
+    sobre: false,
+    projetos: false,
+    habilidades: false,
+  };
 }

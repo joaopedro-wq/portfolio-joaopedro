@@ -44,7 +44,7 @@
 </section>
 
 
-  <section id="sobre" class="about">
+  <section id="sobre" class="about" >
     <div class="section-container">
       <div class="about-card">
         <div class="about-image-wrapper">
@@ -109,53 +109,59 @@
     </div>
   </section>
 
-  <section id="habilidades" class="skills">
-    <div class="section-container">
-      <h2>Skills & Tools</h2>
+  <section id="habilidades" class="skills" [@fadeInDown]>
+  <div class="section-container">
+    <h2>Skills & Tools</h2>
 
-      <div class="skill-chips">
-        <button
-          [class.active]="selectedTab === 'frontend'"
-          (click)="selectTab('frontend')"
-        >
-          <i class="fas fa-code"></i>
-          Frontend
-        </button>
-        <button
-          [class.active]="selectedTab === 'backend'"
-          (click)="selectTab('backend')"
-        >
-          <i class="fas fa-server"></i>
-          Backend
-        </button>
-        <button
-          [class.active]="selectedTab === 'tools'"
-          (click)="selectTab('tools')"
-        >
-          <i class="fas fa-tools"></i>
-          Ferramentas
-        </button>
-      </div>
-
-      <ul *ngIf="selectedTab === 'frontend'" [@fadeSlide]>
-        <li>Angular 10+, TypeScript, RXJS</li>
-        <li>JavaScript (ES6+), HTML5, CSS3, SCSS, Bootstrap, Tailwind</li>
-        <li>Angular Animations, Lazy Loading</li>
-        <li>Testes com Cypress</li>
-      </ul>
-      <ul *ngIf="selectedTab === 'backend'" [@fadeSlide]>
-        <li>Laravel (PHP), Node.js</li>
-        <li>APIs RESTful, Microservices, Lazy Loading</li>
-        <li>SQL (MySQL, PostgreSQL), MongoDB</li>
-      </ul>
-      <ul *ngIf="selectedTab === 'tools'" [@fadeSlide]>
-        <li>Git & GitHub, Figma</li>
-        <li>Postman, Insomnia</li>
-        <li>Scrum e Kanban</li>
-        <li>Clean Code</li>
-      </ul>
+    <div class="skill-chips">
+      <button
+        [class.active]="selectedTab === 'frontend'"
+        (click)="selectTab('frontend')"
+      >
+        <i class="fas fa-code"></i>
+        Frontend
+      </button>
+      <button
+        [class.active]="selectedTab === 'backend'"
+        (click)="selectTab('backend')"
+      >
+        <i class="fas fa-server"></i>
+        Backend
+      </button>
+      <button
+        [class.active]="selectedTab === 'tools'"
+        (click)="selectTab('tools')"
+      >
+        <i class="fas fa-tools"></i>
+        Ferramentas
+      </button>
     </div>
-  </section>
+
+    <!-- Frontend -->
+    <ul *ngIf="selectedTab === 'frontend'" [@fadeSlide] [@listStagger]>
+      <li class="stagger-item">Angular 10+, TypeScript, RXJS</li>
+      <li class="stagger-item">JavaScript (ES6+), HTML5, CSS3, SCSS, Bootstrap, Tailwind</li>
+      <li class="stagger-item">Angular Animations, Lazy Loading</li>
+      <li class="stagger-item">Testes com Cypress</li>
+    </ul>
+
+    <!-- Backend -->
+    <ul *ngIf="selectedTab === 'backend'" [@fadeSlide] [@listStagger]>
+      <li class="stagger-item">Laravel (PHP), Node.js</li>
+      <li class="stagger-item">APIs RESTful, Microservices, Lazy Loading</li>
+      <li class="stagger-item">SQL (MySQL, PostgreSQL), MongoDB</li>
+    </ul>
+
+    <!-- Ferramentas -->
+    <ul *ngIf="selectedTab === 'tools'" [@fadeSlide] [@listStagger]>
+      <li class="stagger-item">Git & GitHub, Figma</li>
+      <li class="stagger-item">Postman, Insomnia</li>
+      <li class="stagger-item">Scrum e Kanban</li>
+      <li class="stagger-item">Clean Code</li>
+    </ul>
+  </div>
+</section>
+
 </main>
 
 <footer>
