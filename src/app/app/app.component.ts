@@ -32,16 +32,29 @@ interface Project {
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(-20px)' }),
         animate(
-          '600ms ease-out',
+          '1000ms ease-out',
           style({ opacity: 1, transform: 'translateY(0)' })
         ),
+      ]),
+    ]),
+    trigger('fadeInUpStagger', [
+      transition(':enter', [
+        query('.stagger-item', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(300, [
+            animate(
+              '600ms ease-out',
+              style({ opacity: 1, transform: 'translateY(0)' })
+            ),
+          ]),
+        ]),
       ]),
     ]),
     trigger('fadeSlide', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(10px)' }),
         animate(
-          '400ms ease-out',
+          '600ms ease-out',
           style({ opacity: 1, transform: 'translateY(0)' })
         ),
       ]),
@@ -56,9 +69,9 @@ interface Project {
       transition(':enter', [
         query('li', [
           style({ opacity: 0, transform: 'translateX(-10px)' }),
-          stagger(300, [
+          stagger(400, [
             animate(
-              '400ms ease-out',
+              '600ms ease-out',
               style({ opacity: 1, transform: 'translateX(0)' })
             ),
           ]),
