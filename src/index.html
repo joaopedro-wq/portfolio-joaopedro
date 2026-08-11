@@ -1,18 +1,70 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>João Pedro Bandeira</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfólio de João Pedro Bandeira, desenvolvedor web full stack. Conheça minhas habilidades e projetos.">
-  <meta name="keywords" content="João Pedro Bandeira, desenvolvedor web, portfólio, Angular, Laravel, TypeScript, RXJS, APIs RESTful, e-commerce, marketing digital, sistemas web, full stack developer">
-  
-  <link rel="icon" type="image/" href="logo_sistema.png">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <title>João Pedro Bandeira — Desenvolvedor Full-stack & UI/UX (Angular, Laravel)</title>
+  <meta name="description" content="Desenvolvedor Full-stack com +3 anos de experiência. Do protótipo no Figma ao deploy: interfaces em Angular, APIs em Laravel e integrações com Meta, TikTok, Google e LinkedIn.">
+  <meta name="author" content="João Pedro Bandeira">
+  <meta name="theme-color" content="#0a0c12">
+  <link rel="canonical" href="https://joaopedro-wq.github.io/portfolio-joaopedro/">
+
+  <!-- Open Graph / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="João Pedro Bandeira">
+  <meta property="og:title" content="João Pedro Bandeira — Desenvolvedor Full-stack & UI/UX">
+  <meta property="og:description" content="Do protótipo no Figma ao deploy: interfaces em Angular, APIs em Laravel e integrações com Meta, TikTok, Google e LinkedIn. +3 anos de experiência.">
+  <meta property="og:url" content="https://joaopedro-wq.github.io/portfolio-joaopedro/">
+  <meta property="og:image" content="https://joaopedro-wq.github.io/portfolio-joaopedro/user.jpg">
+  <meta property="og:image:alt" content="Foto de João Pedro Bandeira">
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="João Pedro Bandeira — Desenvolvedor Full-stack & UI/UX">
+  <meta name="twitter:description" content="Do protótipo no Figma ao deploy: interfaces fáceis de usar, APIs em Laravel e testes automatizados.">
+  <meta name="twitter:image" content="https://joaopedro-wq.github.io/portfolio-joaopedro/user.jpg">
+
+  <link rel="icon" type="image/png" href="logo_sistema.png">
+  <link rel="apple-touch-icon" href="logo_sistema.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Dados estruturados: ajuda o Google a exibir o perfil corretamente -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "João Pedro Bandeira",
+    "jobTitle": "Desenvolvedor Full-stack & UI/UX",
+    "email": "mailto:joao.bandeiraoliveira@gmail.com",
+    "telephone": "+55-28-99965-8399",
+    "url": "https://joaopedro-wq.github.io/portfolio-joaopedro/",
+    "image": "https://joaopedro-wq.github.io/portfolio-joaopedro/user.jpg",
+    "sameAs": [
+      "https://github.com/joaopedro-wq",
+      "https://www.linkedin.com/in/jo%C3%A3o-pedro-bandeira-01b83a205/"
+    ],
+    "knowsAbout": ["Angular", "Laravel", "TypeScript", "PHP", "Node.js", "PostgreSQL", "MySQL", "RxJS", "Figma", "UI/UX Design", "Prototipação", "Design System", "Usabilidade", "Cypress", "Testes automatizados", "Meta API", "TikTok API", "Google API", "LinkedIn API", "OAuth 2.0", "Integração de APIs"]
+  }
+  </script>
+
+  <!-- Evita flash de tema errado antes do Angular iniciar -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body class="mat-typography">
+<body>
   <app-root></app-root>
 </body>
 </html>
