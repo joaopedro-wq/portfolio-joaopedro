@@ -1,16 +1,16 @@
-<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<a class="skip-link" href="#conteudo">{{ c().header.skipLink }}</a>
 
 <header class="site-header" [class.is-scrolled]="scrolled()">
   <div class="scroll-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
 
-  <nav class="navbar" aria-label="Navegação principal">
+  <nav class="navbar" [attr.aria-label]="c().header.navLabel">
     <a href="#inicio" class="brand" (click)="closeMenu()">
       <img src="/logo_sistema.png" alt="" width="36" height="36" />
       <span class="brand-text">João Pedro<span class="brand-dot">.</span></span>
     </a>
 
     <ul class="nav-links" [class.open]="menuOpen()" id="menu-principal">
-      @for (item of navItems; track item.id) {
+      @for (item of c().nav; track item.id) {
         <li>
           <a
             [href]="'#' + item.id"
@@ -25,17 +25,27 @@
 
     <div class="nav-actions">
       <button
+        class="icon-btn lang-btn"
+        type="button"
+        (click)="toggleLang()"
+        [attr.aria-label]="c().header.langLabel"
+        [title]="c().header.langLabel"
+      >
+        {{ lang() === 'pt' ? 'EN' : 'PT' }}
+      </button>
+
+      <button
         class="icon-btn"
         type="button"
         (click)="toggleTheme()"
-        [attr.aria-label]="isDark() ? 'Ativar tema claro' : 'Ativar tema escuro'"
-        [title]="isDark() ? 'Tema claro' : 'Tema escuro'"
+        [attr.aria-label]="isDark() ? c().header.themeToLight : c().header.themeToDark"
+        [title]="isDark() ? c().header.themeToLight : c().header.themeToDark"
       >
         <i class="fas" [class.fa-sun]="isDark()" [class.fa-moon]="!isDark()"></i>
       </button>
 
       <button class="btn btn-primary btn-sm nav-cta" type="button" (click)="abrirModalContato()">
-        Contratar
+        {{ c().header.hire }}
       </button>
 
       <button
@@ -44,7 +54,7 @@
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="menu-principal"
-        [attr.aria-label]="menuOpen() ? 'Fechar menu' : 'Abrir menu'"
+        [attr.aria-label]="menuOpen() ? c().header.closeMenu : c().header.openMenu"
       >
         <i class="fas" [class.fa-times]="menuOpen()" [class.fa-bars]="!menuOpen()"></i>
       </button>
@@ -61,40 +71,31 @@
       <div class="hero-content">
         <span class="availability stagger-item">
           <span class="pulse-dot" aria-hidden="true"></span>
-          Disponível para novas oportunidades
+          {{ c().hero.badge }}
         </span>
 
-        <h1 class="stagger-item">
-          Olá, sou <span class="gradient-text">João Pedro</span> — desenho e
-          construo sistemas web completos.
-        </h1>
+        <h1 class="stagger-item" [innerHTML]="c().hero.title"></h1>
 
-        <p class="hero-lead stagger-item">
-          Desenvolvedor <strong>Full-stack</strong> com +3 anos de experiência em
-          <strong>Angular</strong> e <strong>Laravel</strong>. Vou do
-          <strong>protótipo no Figma ao deploy</strong>: crio interfaces fáceis de
-          usar e o backend por trás delas — incluindo
-          <strong>integrações com as APIs de Meta, TikTok, Google e LinkedIn</strong>.
-        </p>
+        <p class="hero-lead stagger-item" [innerHTML]="c().hero.lead"></p>
 
         <div class="stack-container stagger-item">
-          @for (tech of ['Angular', 'TypeScript', 'Figma', 'UI/UX', 'Laravel', 'Node.js', 'Cypress', 'PostgreSQL']; track tech) {
+          @for (tech of c().hero.pills; track tech) {
             <span class="tech-pill">{{ tech }}</span>
           }
         </div>
 
         <div class="hero-actions stagger-item">
           <button class="btn btn-primary" type="button" (click)="abrirModalContato()">
-            <i class="fas fa-paper-plane"></i> Vamos conversar
+            <i class="fas fa-paper-plane"></i> {{ c().hero.ctaTalk }}
           </button>
 
           <a class="btn btn-ghost" href="#projetos">
-            <i class="fas fa-layer-group"></i> Ver projetos
+            <i class="fas fa-layer-group"></i> {{ c().hero.ctaProjects }}
           </a>
 
           @if (cvDisponivel) {
             <a class="btn btn-ghost" [href]="cvUrl" download>
-              <i class="fas fa-file-arrow-down"></i> Baixar CV
+              <i class="fas fa-file-arrow-down"></i> {{ c().hero.ctaCv }}
             </a>
           }
         </div>
@@ -106,23 +107,25 @@
           <a [href]="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a [href]="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <a [href]="whatsapp()" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
-          <span class="hero-location"><i class="fas fa-location-dot"></i> {{ localizacao }}</span>
+          <span class="hero-location">
+            <i class="fas fa-location-dot"></i> {{ c().hero.location }}
+          </span>
         </div>
       </div>
 
       <div class="hero-visual stagger-item">
         <div class="avatar-frame">
-          <img src="/user.jpg" alt="Foto de João Pedro Bandeira" width="280" height="280" />
+          <img src="/user.jpg" [alt]="c().hero.photoAlt" width="280" height="280" />
         </div>
       </div>
     </div>
 
     <div class="container">
       <div class="metrics-strip stagger-item">
-        @for (m of metrics; track m.label; let i = $index) {
+        @for (m of c().metrics; track m.label; let i = $index) {
           <div class="metric" appReveal="scale" [revealDelay]="i * 90">
             <span class="metric-value" [appCountUp]="m.value" [suffix]="m.suffix"></span>
             <span class="metric-label">{{ m.label }}</span>
@@ -136,76 +139,26 @@
   <section id="sobre" class="section">
     <div class="container">
       <header class="section-head" appReveal>
-        <span class="eyebrow">Sobre mim</span>
-        <h2>Design e código na mesma pessoa</h2>
-        <p class="section-sub">
-          Um desenvolvedor que desenha a tela antes de codificar — e conversa com
-          quem vai usá-la.
-        </p>
+        <span class="eyebrow">{{ c().about.eyebrow }}</span>
+        <h2>{{ c().about.title }}</h2>
+        <p class="section-sub">{{ c().about.sub }}</p>
       </header>
 
       <div class="about-grid">
         <article class="card about-text" appReveal="left">
-          <p>
-            Sou Desenvolvedor Full-stack com <strong>+3 anos de experiência</strong>,
-            especializado em <strong>Angular</strong> e <strong>Laravel</strong>,
-            construindo sistemas completos do <strong>protótipo ao deploy</strong>.
-          </p>
-          <p>
-            Meu diferencial é unir <strong>design e desenvolvimento</strong>. Antes
-            de escrever a primeira linha, prototipo a tela no <strong>Figma</strong>
-            — o que evita retrabalho e deixa o escopo claro para todo mundo. Depois
-            trabalho a interface pela <strong>usabilidade</strong>: a tela precisa
-            explicar sozinha o que o usuário deve fazer.
-          </p>
-          <p>
-            Hoje integro o time do <strong>CoCreator Collab</strong>, SaaS que
-            conecta criadores de conteúdo e marcas por uma estrutura de match e
-            publica o conteúdo direto nas redes. Ali eu atuo nas duas pontas:
-            construo as telas em Angular e o backend das
-            <strong>integrações com as APIs de Meta, TikTok, Google e LinkedIn</strong>,
-            que levam a publicação até cada rede.
-          </p>
-          <p>
-            Antes disso entreguei o <strong>Sistema Mesur</strong>, também do
-            protótipo ao deploy. Em todos os projetos as entregas são sustentadas
-            por <strong>testes automatizados</strong> nos fluxos críticos.
-          </p>
+          @for (p of c().about.paragraphs; track $index) {
+            <p [innerHTML]="p"></p>
+          }
         </article>
 
         <div class="about-cards">
-          <article class="card mini-card" appReveal="right" [revealDelay]="0">
-            <i class="fas fa-pen-ruler"></i>
-            <h3>Do protótipo ao deploy</h3>
-            <p>
-              Wireframe, protótipo navegável no Figma, código e entrega — o ciclo
-              inteiro sem passar o problema adiante.
-            </p>
-          </article>
-          <article class="card mini-card" appReveal="right" [revealDelay]="90">
-            <i class="fas fa-wand-magic-sparkles"></i>
-            <h3>Interfaces que se explicam</h3>
-            <p>
-              Telas pensadas para usabilidade: hierarquia clara, poucos cliques e
-              nenhum manual necessário.
-            </p>
-          </article>
-          <article class="card mini-card" appReveal="right" [revealDelay]="180">
-            <i class="fas fa-plug"></i>
-            <h3>Integrações que funcionam</h3>
-            <p>
-              APIs de Meta, TikTok, Google e LinkedIn: OAuth, tokens, limites e
-              erros de publicação tratados de ponta a ponta.
-            </p>
-          </article>
-          <article class="card mini-card" appReveal="right" [revealDelay]="270">
-            <i class="fas fa-vial-circle-check"></i>
-            <h3>Qualidade automatizada</h3>
-            <p>
-              Testes E2E com Cypress nos fluxos críticos: a entrega chega em
-              produção sem sustos.
-            </p>
-          </article>
+          @for (card of c().about.cards; track card.title; let i = $index) {
+            <article class="card mini-card" appReveal="right" [revealDelay]="i * 90">
+              <i [class]="card.icon"></i>
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.text }}</p>
+            </article>
+          }
         </div>
       </div>
     </div>
@@ -215,15 +168,13 @@
   <section id="experiencia" class="section section-alt">
     <div class="container">
       <header class="section-head" appReveal>
-        <span class="eyebrow">Trajetória</span>
-        <h2>Experiência profissional</h2>
-        <p class="section-sub">
-          Onde apliquei design, código e testes — e o que ficou entregue.
-        </p>
+        <span class="eyebrow">{{ c().experience.eyebrow }}</span>
+        <h2>{{ c().experience.title }}</h2>
+        <p class="section-sub">{{ c().experience.sub }}</p>
       </header>
 
       <ol class="timeline">
-        @for (exp of experiences; track exp.company; let i = $index) {
+        @for (exp of c().experience.items; track exp.company; let i = $index) {
           <li class="timeline-item">
             <span class="timeline-marker" [class.current]="exp.current" aria-hidden="true"></span>
             <article class="card timeline-card" appReveal="right" [revealDelay]="i * 120">
@@ -250,20 +201,39 @@
     </div>
   </section>
 
-  <!-- ========================== PROJETOS ========================== -->
-  <section id="projetos" class="section">
+  <!-- ========================== PROCESSO ========================== -->
+  <section id="processo" class="section">
     <div class="container">
       <header class="section-head" appReveal>
-        <span class="eyebrow">Portfólio</span>
-        <h2>Projetos pessoais</h2>
-        <p class="section-sub">
-          Ideias que tirei do papel sozinho — do primeiro rascunho ao deploy.
-          O trabalho em equipe está em <a href="#experiencia">Experiência</a>.
-        </p>
+        <span class="eyebrow">{{ c().process.eyebrow }}</span>
+        <h2>{{ c().process.title }}</h2>
+        <p class="section-sub">{{ c().process.sub }}</p>
+      </header>
+
+      <ol class="process-grid">
+        @for (step of c().process.steps; track step.title; let i = $index) {
+          <li class="process-step card" appReveal [revealDelay]="i * 110">
+            <span class="step-number" aria-hidden="true">{{ i + 1 }}</span>
+            <i [class]="step.icon" aria-hidden="true"></i>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================== PROJETOS ========================== -->
+  <section id="projetos" class="section section-alt">
+    <div class="container">
+      <header class="section-head" appReveal>
+        <span class="eyebrow">{{ c().projects.eyebrow }}</span>
+        <h2>{{ c().projects.title }}</h2>
+        <p class="section-sub" [innerHTML]="c().projects.sub"></p>
       </header>
 
       <div class="project-grid">
-        @for (project of projects; track project.title; let i = $index) {
+        @for (project of c().projects.items; track project.title; let i = $index) {
           <article
             class="card project"
             [class.featured]="project.featured"
@@ -273,7 +243,9 @@
             <div class="project-head">
               <h3>{{ project.title }}</h3>
               @if (project.featured) {
-                <span class="badge-featured"><i class="fas fa-star"></i> Destaque</span>
+                <span class="badge-featured">
+                  <i class="fas fa-star"></i> {{ c().projects.featured }}
+                </span>
               }
             </div>
             <p class="project-tagline">{{ project.tagline }}</p>
@@ -287,19 +259,19 @@
                     class="video-poster"
                     type="button"
                     (click)="ativarVideo(videoSrc)"
-                    [attr.aria-label]="'Reproduzir demonstração de ' + project.title"
+                    [attr.aria-label]="c().projects.playVideo + ' — ' + project.title"
                   >
                     <span class="play-icon"><i class="fas fa-play"></i></span>
-                    <span class="play-label">Ver demonstração</span>
+                    <span class="play-label">{{ c().projects.playVideo }}</span>
                   </button>
                 }
               </div>
             }
 
             <dl class="project-detail">
-              <dt>Problema</dt>
+              <dt>{{ c().projects.labelProblem }}</dt>
               <dd>{{ project.problem }}</dd>
-              <dt>Solução</dt>
+              <dt>{{ c().projects.labelSolution }}</dt>
               <dd>{{ project.solution }}</dd>
             </dl>
 
@@ -318,12 +290,12 @@
             <div class="project-links">
               @if (project.github) {
                 <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fab fa-github"></i> Código
+                  <i class="fab fa-github"></i> {{ c().projects.code }}
                 </a>
               }
               @if (project.demo) {
                 <a [href]="project.demo" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Ver online
+                  <i class="fas fa-arrow-up-right-from-square"></i> {{ c().projects.liveDemo }}
                 </a>
               }
               @if (project.note) {
@@ -336,10 +308,10 @@
         <!-- Convite: mantém a seção viva enquanto novos projetos não entram -->
         <article class="card project project-cta" appReveal [revealDelay]="240">
           <i class="fas fa-code-branch"></i>
-          <h3>Mais projetos no GitHub</h3>
-          <p>Experimentos, estudos e código do dia a dia — sempre em evolução.</p>
+          <h3>{{ c().projects.ctaCard.title }}</h3>
+          <p>{{ c().projects.ctaCard.text }}</p>
           <a [href]="github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-            <i class="fab fa-github"></i> Ver repositórios
+            <i class="fab fa-github"></i> {{ c().projects.ctaCard.button }}
           </a>
         </article>
       </div>
@@ -347,16 +319,16 @@
   </section>
 
   <!-- ========================= HABILIDADES ========================= -->
-  <section id="habilidades" class="section section-alt">
+  <section id="habilidades" class="section">
     <div class="container">
       <header class="section-head" appReveal>
-        <span class="eyebrow">Stack</span>
-        <h2>Habilidades &amp; Ferramentas</h2>
-        <p class="section-sub">O que uso no dia a dia, por área.</p>
+        <span class="eyebrow">{{ c().skills.eyebrow }}</span>
+        <h2>{{ c().skills.title }}</h2>
+        <p class="section-sub">{{ c().skills.sub }}</p>
       </header>
 
-      <div class="skill-chips" role="tablist" aria-label="Áreas de habilidade" appReveal>
-        @for (group of skillGroups; track group.id) {
+      <div class="skill-chips" role="tablist" [attr.aria-label]="c().skills.tablistLabel" appReveal>
+        @for (group of c().skills.groups; track group.id) {
           <button
             type="button"
             role="tab"
@@ -374,16 +346,18 @@
       <div
         class="skill-panel"
         role="tabpanel"
-        [id]="'panel-' + activeGroup.id"
-        [attr.aria-labelledby]="'tab-' + activeGroup.id"
+        [id]="'panel-' + activeGroup().id"
+        [attr.aria-labelledby]="'tab-' + activeGroup().id"
       >
-        @for (group of skillGroups; track group.id) {
+        @for (group of c().skills.groups; track group.id) {
           @if (selectedTab() === group.id) {
             <ul class="skill-list" [@fadeSlide] [@listStagger]>
               @for (item of group.items; track item.name) {
                 <li>
                   <span class="skill-name">{{ item.name }}</span>
-                  <span class="skill-level" [attr.data-level]="item.level">{{ item.level }}</span>
+                  <span class="skill-level" [attr.data-level]="item.level">
+                    {{ c().skills.levels[item.level] }}
+                  </span>
                 </li>
               }
             </ul>
@@ -394,26 +368,27 @@
   </section>
 
   <!-- =========================== CONTATO =========================== -->
-  <section id="contato" class="section contact-section">
+  <section id="contato" class="section section-alt contact-section">
     <div class="container">
       <div class="contact-card" appReveal="scale">
-        <span class="eyebrow">Contato</span>
-        <h2>Vamos construir algo juntos?</h2>
-        <p>
-          Estou aberto a vagas full-stack, projetos de interface e parcerias.
-          Respondo em até 24 horas — escolha o canal que preferir.
-        </p>
+        <span class="eyebrow">{{ c().contact.eyebrow }}</span>
+        <h2>{{ c().contact.title }}</h2>
+        <p>{{ c().contact.text }}</p>
 
-        <div class="contact-actions">
-          <a class="btn btn-primary" [href]="whatsapp" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
-          </a>
-          <a class="btn btn-ghost" [href]="'mailto:' + email">
-            <i class="fas fa-envelope"></i> Enviar e-mail
-          </a>
-          <a class="btn btn-ghost" [href]="linkedin" target="_blank" rel="noopener">
-            <i class="fab fa-linkedin-in"></i> LinkedIn
-          </a>
+        <div class="contact-layout">
+          <app-contact-form [t]="c().contact.form" [email]="email" />
+
+          <div class="contact-aside">
+            <a class="btn btn-primary" [href]="whatsapp()" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> {{ c().contact.whatsapp }}
+            </a>
+            <a class="btn btn-ghost" [href]="'mailto:' + email">
+              <i class="fas fa-envelope"></i> {{ c().contact.email }}
+            </a>
+            <a class="btn btn-ghost" [href]="linkedin" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin-in"></i> {{ c().contact.linkedin }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -422,7 +397,7 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <p>&copy; {{ anoAtual }} João Pedro Bandeira.</p>
+    <p>&copy; {{ anoAtual }} {{ c().footer.rights }}</p>
     <div class="footer-social">
       <a [href]="github" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a [href]="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -442,22 +417,32 @@
       (click)="$event.stopPropagation()"
       [@modalAnim]
     >
-      <button class="close-btn" type="button" (click)="fecharModalContato()" aria-label="Fechar">
+      <button
+        class="close-btn"
+        type="button"
+        (click)="fecharModalContato()"
+        [attr.aria-label]="c().modal.close"
+      >
         <i class="fas fa-times"></i>
       </button>
 
-      <h2 id="modal-titulo">Entre em contato</h2>
-      <p class="modal-sub">Clique para abrir ou use o botão de copiar.</p>
+      <h2 id="modal-titulo">{{ c().modal.title }}</h2>
+      <p class="modal-sub">{{ c().modal.sub }}</p>
 
-      <a class="btn btn-primary modal-primary" [href]="whatsapp" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+      <a class="btn btn-primary modal-primary" [href]="whatsapp()" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> {{ c().modal.whatsapp }}
       </a>
 
       <div class="modal-links">
         <div class="contact-item">
           <i class="fas fa-envelope"></i>
           <a [href]="'mailto:' + email">{{ email }}</a>
-          <button class="copy-btn" type="button" (click)="copiarTexto(email, $event)" aria-label="Copiar e-mail">
+          <button
+            class="copy-btn"
+            type="button"
+            (click)="copiarTexto(email, $event)"
+            [attr.aria-label]="c().modal.copy + ' — e-mail'"
+          >
             <i class="fas fa-copy"></i>
           </button>
         </div>
@@ -465,7 +450,12 @@
         <div class="contact-item">
           <i class="fas fa-phone"></i>
           <a [href]="'tel:' + telefoneRaw">{{ telefone }}</a>
-          <button class="copy-btn" type="button" (click)="copiarTexto(telefoneRaw, $event)" aria-label="Copiar telefone">
+          <button
+            class="copy-btn"
+            type="button"
+            (click)="copiarTexto(telefoneRaw, $event)"
+            [attr.aria-label]="c().modal.copy + ' — WhatsApp'"
+          >
             <i class="fas fa-copy"></i>
           </button>
         </div>
@@ -473,7 +463,12 @@
         <div class="contact-item">
           <i class="fab fa-linkedin"></i>
           <a [href]="linkedin" target="_blank" rel="noopener">LinkedIn</a>
-          <button class="copy-btn" type="button" (click)="copiarTexto(linkedin, $event)" aria-label="Copiar LinkedIn">
+          <button
+            class="copy-btn"
+            type="button"
+            (click)="copiarTexto(linkedin, $event)"
+            [attr.aria-label]="c().modal.copy + ' — LinkedIn'"
+          >
             <i class="fas fa-copy"></i>
           </button>
         </div>
@@ -481,7 +476,12 @@
         <div class="contact-item">
           <i class="fab fa-github"></i>
           <a [href]="github" target="_blank" rel="noopener">GitHub</a>
-          <button class="copy-btn" type="button" (click)="copiarTexto(github, $event)" aria-label="Copiar GitHub">
+          <button
+            class="copy-btn"
+            type="button"
+            (click)="copiarTexto(github, $event)"
+            [attr.aria-label]="c().modal.copy + ' — GitHub'"
+          >
             <i class="fas fa-copy"></i>
           </button>
         </div>
