@@ -93,9 +93,20 @@
       </p>
     }
 
-    <button type="submit" class="btn btn-primary form-submit" [disabled]="state() === 'sending'">
+    <!--
+      Botão da bandeira-ui: `loading` já cuida do spinner, do `aria-busy` e de
+      bloquear o clique — nada disso precisa ser repetido aqui.
+    -->
+    <button
+      bdButton
+      type="submit"
+      size="lg"
+      block
+      class="form-submit"
+      [loading]="state() === 'sending'"
+    >
       @if (state() === 'sending') {
-        <i class="fas fa-circle-notch fa-spin"></i> {{ t().sending }}
+        {{ t().sending }}
       } @else {
         <i class="fas fa-paper-plane"></i> {{ t().submit }}
       }

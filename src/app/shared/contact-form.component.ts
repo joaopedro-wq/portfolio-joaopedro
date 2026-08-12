@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { firstValueFrom } from 'rxjs';
+import { BdButtonComponent } from 'bandeira-ui';
 import { SiteContent } from './content.model';
 
 /**
@@ -24,7 +25,7 @@ type FormState = 'idle' | 'sending' | 'success' | 'error';
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BdButtonComponent],
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
