@@ -26,6 +26,8 @@ export interface Project {
   highlights: string[];
   tech: string[];
   video?: string;
+  /** Frame estático exibido antes de o usuário pedir o vídeo. */
+  poster?: string;
   github?: string;
   demo?: string;
   featured?: boolean;
@@ -136,6 +138,24 @@ export interface SiteContent {
     liveDemo: string;
     playVideo: string;
     items: Project[];
+    /**
+     * Card da bandeira-ui: o projeto de maior peso técnico, exibido antes dos
+     * demais. Os três links saem para fora — a documentação é um site próprio.
+     */
+    designSystem: {
+      name: string;
+      tagline: string;
+      problem: string;
+      solution: string;
+      highlights: string[];
+      chips: string[];
+      cta: string;
+      ctaCode: string;
+      ctaNpm: string;
+      docsUrl: string;
+      githubUrl: string;
+      npmUrl: string;
+    };
     ctaCard: { title: string; text: string; button: string };
   };
 

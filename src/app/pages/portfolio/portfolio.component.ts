@@ -16,19 +16,18 @@ import {
   trigger,
 } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
+import { BdRevealDirective, BdCountUpDirective } from 'bandeira-ui';
 
-import { RevealDirective } from '../shared/reveal.directive';
-import { CountUpDirective } from '../shared/count-up.directive';
-import { ContactFormComponent } from '../shared/contact-form.component';
-import { I18nService } from '../shared/i18n.service';
-import type { SectionId, SkillGroup } from '../shared/content.model';
+import { ContactFormComponent } from '../../shared/contact-form.component';
+import { I18nService } from '../../shared/i18n.service';
+import type { SectionId, SkillGroup } from '../../shared/content.model';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-portfolio',
   standalone: true,
-  imports: [RevealDirective, CountUpDirective, ContactFormComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  imports: [BdRevealDirective, BdCountUpDirective, ContactFormComponent],
+  templateUrl: './portfolio.component.html',
+  styleUrls: ['./portfolio.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('staggerIn', [
@@ -76,7 +75,7 @@ import type { SectionId, SkillGroup } from '../shared/content.model';
     ]),
   ],
 })
-export class AppComponent {
+export class PortfolioComponent {
   private readonly toastr = inject(ToastrService);
   private readonly document = inject(DOCUMENT);
   private readonly i18n = inject(I18nService);

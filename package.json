@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "node scripts/spa-fallback.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -32,6 +33,7 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@ng-icons/core": "^32.0.0",
     "@ng-icons/heroicons": "^32.0.0",
+    "bandeira-ui": "file:../bandeira-ui/dist/bandeira-ui-0.2.0.tgz",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -49,6 +51,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^20.0.0",
     "typescript": "~5.8.2"
   }
 }

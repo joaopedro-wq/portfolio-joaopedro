@@ -27,7 +27,7 @@ export const CONTENT_PT: SiteContent = {
     title:
       'Olá, sou <span class="gradient-text">João Pedro</span> — desenho e construo sistemas web completos.',
     lead:
-      'Desenvolvedor <strong>Full-stack</strong> com +3 anos de experiência em <strong>Angular</strong> e <strong>Laravel</strong>. Vou do <strong>protótipo no Figma ao deploy</strong>: crio interfaces fáceis de usar e o backend por trás delas — incluindo <strong>integrações com as APIs de Meta, TikTok, Google e LinkedIn</strong>.',
+      'Desenvolvedor <strong>Full-stack</strong> com +3 anos de experiência em <strong>Angular</strong> e <strong>Laravel</strong>. Vou do <strong>protótipo no Figma ao deploy</strong>: desenho a interface e construo o backend por trás dela.',
     pills: [
       'Angular',
       'TypeScript',
@@ -48,40 +48,39 @@ export const CONTENT_PT: SiteContent = {
   metrics: [
     { value: 3, suffix: '+', label: 'anos de experiência' },
     { value: 4, suffix: '', label: 'APIs de redes sociais integradas' },
-    { value: 15, suffix: '+', label: 'tecnologias no stack' },
-    { value: 100, suffix: '%', label: 'do protótipo ao deploy' },
+    { value: 31, suffix: '', label: 'componentes publicados no npm' },
+    { value: 102, suffix: '', label: 'testes automatizados na minha lib' },
   ],
 
   about: {
     eyebrow: 'Sobre mim',
     title: 'Design e código na mesma pessoa',
-    sub: 'Um desenvolvedor que desenha a tela antes de codificar — e pensa em quem vai usá-la.',
+    sub: 'O que muda quando desenho e código não passam por mãos diferentes.',
     paragraphs: [
-      'Sou Desenvolvedor Full-stack com <strong>+3 anos de experiência</strong>, especializado em <strong>Angular</strong> e <strong>Laravel</strong>, construindo sistemas completos do <strong>protótipo ao deploy</strong>.',
-      'Meu diferencial é unir <strong>design e desenvolvimento</strong>. Antes de escrever a primeira linha, prototipo a tela no <strong>Figma</strong> — o que evita retrabalho e deixa o escopo claro para todo mundo. Depois trabalho a interface pela <strong>usabilidade</strong>: a tela precisa explicar sozinha o que o usuário deve fazer.',
-      'Hoje integro o time do <strong>CoCreator Collab</strong>, SaaS que conecta criadores de conteúdo e marcas por uma estrutura de match e publica o conteúdo direto nas redes. Ali eu atuo nas duas pontas: construo as telas em Angular e o backend das <strong>integrações com as APIs de Meta, TikTok, Google e LinkedIn</strong>, que levam a publicação até cada rede.',
-      'Antes disso entreguei o <strong>Sistema Mesur</strong>, também do protótipo ao deploy. Em todos os projetos as entregas são sustentadas por <strong>testes automatizados</strong> nos fluxos críticos.',
+      'Na maioria dos times existe uma emenda entre quem desenha e quem programa. O que foi pensado de um lado chega deformado do outro, e a diferença aparece no prazo. <strong>Comigo essa emenda não existe</strong>: a mesma pessoa decide a interface e a constrói.',
+      'Isso muda o que chega ao usuário. A interface é discutida e corrigida enquanto mudar ainda é barato — não depois de pronta. O que sobra é uma <strong>interface que se explica sozinha</strong>: hierarquia clara, poucos cliques, nenhum manual.',
+      'Hoje aplico isso no <strong>CoCreator Collab</strong>, atuando nas duas pontas: a interface em <strong>Angular</strong> e o backend em <strong>Laravel</strong>. O detalhe de cada entrega está em <a href="#experiencia">Experiência</a>.',
     ],
     cards: [
       {
         icon: 'fas fa-pen-ruler',
-        title: 'Do protótipo ao deploy',
-        text: 'Wireframe, protótipo navegável no Figma, código e entrega — o ciclo inteiro sem passar o problema adiante.',
+        title: 'Uma cabeça só',
+        text: 'Quem desenha a interface é quem a constrói. Nada se perde na passagem entre uma etapa e outra.',
       },
       {
         icon: 'fas fa-wand-magic-sparkles',
         title: 'Interfaces que se explicam',
-        text: 'Telas pensadas para usabilidade: hierarquia clara, poucos cliques e nenhum manual necessário.',
+        text: 'Hierarquia clara, poucos cliques e nenhum manual necessário.',
       },
       {
         icon: 'fas fa-plug',
         title: 'Integrações que funcionam',
-        text: 'APIs de Meta, TikTok, Google e LinkedIn: OAuth, tokens, limites e erros de publicação tratados de ponta a ponta.',
+        text: 'OAuth, tokens, limites e erros de publicação tratados de ponta a ponta.',
       },
       {
-        icon: 'fas fa-vial-circle-check',
-        title: 'Qualidade automatizada',
-        text: 'Testes E2E com Cypress nos fluxos críticos: a entrega chega em produção sem sustos.',
+        icon: 'fas fa-cube',
+        title: 'Código que sobrevive ao projeto',
+        text: 'O que se repete vira biblioteca. A bandeira-ui nasceu assim e hoje é um pacote público.',
       },
     ],
   },
@@ -104,7 +103,7 @@ export const CONTENT_PT: SiteContent = {
           'Backend das rotinas de publicação e retorno de status para o painel, em Laravel',
           'Telas do fluxo de match entre criadores e marcas, com foco em usabilidade e leitura imediata dos dados',
           'Design system em componentes Angular reutilizáveis, garantindo consistência visual em todo o produto',
-          'Protótipos no Figma alinhados com produto antes do desenvolvimento — menos retrabalho e escopo claro',
+          'Alinhamento com produto antes de cada entrega, reduzindo mudança de escopo no meio do caminho',
           'Testes automatizados end-to-end com Cypress cobrindo os fluxos críticos da plataforma',
         ],
         stack: [
@@ -129,7 +128,7 @@ export const CONTENT_PT: SiteContent = {
         summary:
           'Sistema de gestão interna, com responsabilidade sobre o frontend e o backend das funcionalidades entregues.',
         achievements: [
-          'Wireframes e protótipos das telas antes do desenvolvimento, alinhados com os usuários do sistema',
+          'Levantamento com os usuários internos antes de definir cada tela do sistema',
           'Modelagem de dados e implementação das regras de negócio no backend',
           'Interfaces reativas em Angular com componentes reutilizáveis',
           'Otimização de consultas e ajustes de performance em telas críticas',
@@ -157,7 +156,7 @@ export const CONTENT_PT: SiteContent = {
       {
         icon: 'fas fa-code',
         title: 'Construção',
-        text: 'Frontend em Angular sobre um design system, backend e integrações em Laravel. Componentes reutilizáveis desde o primeiro dia.',
+        text: 'Frontend em Angular sobre a minha própria biblioteca de componentes; backend e integrações em Laravel.',
       },
       {
         icon: 'fas fa-rocket',
@@ -170,7 +169,7 @@ export const CONTENT_PT: SiteContent = {
   projects: {
     eyebrow: 'Portfólio',
     title: 'Projetos pessoais',
-    sub: 'Ideias que tirei do papel sozinho — do primeiro rascunho ao deploy. O trabalho em equipe está em <a href="#experiencia">Experiência</a>.',
+    sub: 'O que construí por conta própria, do primeiro traço até o ar. O trabalho em equipe está em <a href="#experiencia">Experiência</a>.',
     labelProblem: 'Problema',
     labelSolution: 'Solução',
     featured: 'Destaque',
@@ -191,11 +190,32 @@ export const CONTENT_PT: SiteContent = {
           'API REST em Laravel com PostgreSQL',
         ],
         tech: ['Angular', 'TypeScript', 'Laravel', 'PostgreSQL'],
-        video: '/vitalityPlus.mp4',
+        video: '/vitality-plus.webm',
+        poster: '/vitality-plus-poster.webp',
         github: 'https://github.com/joaopedro-wq/sakai-ng',
         featured: true,
       },
     ],
+    designSystem: {
+      name: 'bandeira-ui',
+      tagline: 'Design system em Angular, publicado no npm',
+      problem:
+        'Todo sistema novo recomeça pelo botão, pelo card e pelo modal — e refaz, uma a uma, decisões já tomadas dezenas de vezes.',
+      solution:
+        'Uma biblioteca que responde de uma vez: 31 componentes, 4 estruturas de tela inteiras e uma paleta onde trocar uma variável muda o sistema todo.',
+      highlights: [
+        'Tabela virtualizada: dez mil linhas custam o mesmo que trinta',
+        'Tour guiado que reporta em que passo o usuário desistiu',
+        'Teclado, foco e leitor de tela conferidos componente a componente',
+      ],
+      chips: ['Angular 20', '102 testes', 'npm', 'MIT'],
+      cta: 'Ver documentação',
+      ctaCode: 'Código',
+      ctaNpm: 'npm',
+      docsUrl: 'https://bandeira-ui.vercel.app/',
+      githubUrl: 'https://github.com/joaopedro-wq/bandeira-ui',
+      npmUrl: 'https://www.npmjs.com/package/bandeira-ui',
+    },
     ctaCard: {
       title: 'Mais projetos no GitHub',
       text: 'Experimentos, estudos e código do dia a dia — sempre em evolução.',

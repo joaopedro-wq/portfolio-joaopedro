@@ -2,13 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
-import { AppComponent } from './app.component';
+import { PortfolioComponent } from './portfolio.component';
 
-describe('AppComponent', () => {
-  let component: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
+describe('PortfolioComponent', () => {
+  let component: PortfolioComponent;
+  let fixture: ComponentFixture<PortfolioComponent>;
 
   beforeEach(async () => {
     // O idioma inicial cai no navegador quando não há preferência salva;
@@ -16,11 +17,16 @@ describe('AppComponent', () => {
     localStorage.setItem('lang', 'pt');
 
     await TestBed.configureTestingModule({
-      imports: [AppComponent, ToastrModule.forRoot()],
-      providers: [provideNoopAnimations(), provideHttpClient(), provideHttpClientTesting()],
+      imports: [PortfolioComponent, ToastrModule.forRoot()],
+      providers: [
+        provideNoopAnimations(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+      ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(PortfolioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

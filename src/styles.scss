@@ -1,3 +1,7 @@
+// Estilos globais exigidos pela diretiva bdReveal da biblioteca.
+// Só as animações: a paleta é a do portfólio, mapeada na ponte mais abaixo.
+@use 'bandeira-ui/styles/animations';
+
 /* ==========================================================================
    Design tokens globais
    Tema escuro por padrão; `:root[data-theme="light"]` inverte a paleta.
@@ -37,6 +41,7 @@
   --radius-sm: 0.5rem;
   --radius: 0.875rem;
   --radius-lg: 1.25rem;
+  --radius-full: 999px;
   --header-h: 68px;
 
   color-scheme: dark;
@@ -67,6 +72,48 @@
   --glass: rgba(16, 19, 28, 0.025);
 
   color-scheme: light;
+}
+
+/* --------------------------------------------------------------------------
+   Ponte para os tokens da bandeira-ui
+   A biblioteca lê `--bd-*`; aqui eles apontam para a paleta do portfólio,
+   então tudo que vier dela acompanha o tema claro/escuro automaticamente.
+   É exatamente o caso de uso que a lib documenta: redefinir no `:root`.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --bd-bg: var(--bg);
+  --bd-bg-elevated: var(--bg-elevated);
+  --bd-surface: var(--surface);
+  --bd-surface-hover: var(--surface-hover);
+  --bd-border: var(--border);
+  --bd-border-strong: var(--border-strong);
+
+  --bd-fg: var(--fg);
+  --bd-fg-muted: var(--fg-muted);
+  --bd-fg-subtle: var(--fg-subtle);
+
+  --bd-primary: var(--primary);
+  --bd-primary-strong: var(--primary-strong);
+  --bd-primary-soft: var(--primary-soft);
+  --bd-primary-contrast: #fff;
+  --bd-accent: var(--accent);
+  --bd-accent-soft: var(--accent-soft);
+  --bd-danger: #f87171;
+  --bd-danger-soft: rgba(248, 113, 113, 0.12);
+
+  --bd-radius-sm: var(--radius-sm);
+  --bd-radius: var(--radius);
+  --bd-radius-lg: var(--radius-lg);
+  --bd-radius-full: var(--radius-full);
+
+  --bd-shadow-sm: var(--shadow-sm);
+  --bd-shadow-md: var(--shadow-md);
+  --bd-shadow-lg: var(--shadow-lg);
+
+  --bd-gradient: var(--gradient);
+  --bd-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --bd-duration: 0.25s;
 }
 
 *,
@@ -138,40 +185,6 @@ a {
   border: 2px solid var(--bg);
 }
 
-/* --------------------------------------------------------------------------
-   Scroll reveal (aplicado pela diretiva appReveal)
-   Só opacity e transform — propriedades que o browser compõe na GPU.
-   -------------------------------------------------------------------------- */
-
-.reveal {
-  opacity: 0;
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal--up {
-  transform: translateY(32px);
-}
-.reveal--down {
-  transform: translateY(-32px);
-}
-.reveal--left {
-  transform: translateX(-36px);
-}
-.reveal--right {
-  transform: translateX(36px);
-}
-.reveal--scale {
-  transform: scale(0.94);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-  will-change: auto;
-}
-
 /* Respeita quem prefere menos movimento */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -183,12 +196,6 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
   }
 }
 

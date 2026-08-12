@@ -27,7 +27,7 @@ export const CONTENT_EN: SiteContent = {
     title:
       "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — I design and build complete web systems.",
     lead:
-      '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I take products <strong>from the Figma prototype to deployment</strong>: I build interfaces that are easy to use and the backend behind them — including <strong>integrations with the Meta, TikTok, Google and LinkedIn APIs</strong>.',
+      '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I take products <strong>from the Figma prototype to deployment</strong>: I design the interface and build the backend behind it.',
     pills: [
       'Angular',
       'TypeScript',
@@ -48,40 +48,39 @@ export const CONTENT_EN: SiteContent = {
   metrics: [
     { value: 3, suffix: '+', label: 'years of experience' },
     { value: 4, suffix: '', label: 'social media APIs integrated' },
-    { value: 15, suffix: '+', label: 'technologies in the stack' },
-    { value: 100, suffix: '%', label: 'from prototype to deployment' },
+    { value: 31, suffix: '', label: 'components published on npm' },
+    { value: 102, suffix: '', label: 'automated tests in my own library' },
   ],
 
   about: {
     eyebrow: 'About me',
     title: 'Design and code in the same person',
-    sub: 'A developer who designs the screen before coding it — and thinks about who will use it.',
+    sub: 'What changes when design and code do not pass through different hands.',
     paragraphs: [
-      'I am a Full-stack Developer with <strong>3+ years of experience</strong>, specialized in <strong>Angular</strong> and <strong>Laravel</strong>, building complete systems <strong>from prototype to deployment</strong>.',
-      'What sets me apart is combining <strong>design and development</strong>. Before writing the first line, I prototype the screen in <strong>Figma</strong> — which avoids rework and keeps the scope clear for everyone. Then I shape the interface around <strong>usability</strong>: the screen has to explain by itself what the user should do.',
-      'I am currently part of the <strong>CoCreator Collab</strong> team, a SaaS that connects content creators and brands through a matching structure and publishes content straight to social networks. There I work on both ends: I build the screens in Angular and the backend for the <strong>integrations with the Meta, TikTok, Google and LinkedIn APIs</strong> that deliver each publication to its network.',
-      'Before that I delivered the <strong>Mesur System</strong>, also from prototype to deployment. Across every project, deliveries are backed by <strong>automated tests</strong> on the critical flows.',
+      'In most teams there is a seam between whoever designs and whoever codes. What was intended on one side arrives distorted on the other, and the gap shows up in the schedule. <strong>With me that seam does not exist</strong>: the same person decides the interface and builds it.',
+      'That changes what reaches the user. The interface is discussed and corrected while changing it is still cheap — not once it is finished. What is left is an <strong>interface that explains itself</strong>: clear hierarchy, few clicks, no manual.',
+      'I apply this today at <strong>CoCreator Collab</strong>, working on both ends: the interface in <strong>Angular</strong> and the backend in <strong>Laravel</strong>. The detail of each delivery is under <a href="#experiencia">Experience</a>.',
     ],
     cards: [
       {
         icon: 'fas fa-pen-ruler',
-        title: 'From prototype to deployment',
-        text: 'Wireframe, clickable Figma prototype, code and delivery — the whole cycle without handing the problem to someone else.',
+        title: 'One head, not two',
+        text: 'Whoever designs the interface is the one who builds it. Nothing is lost in the handover between steps.',
       },
       {
         icon: 'fas fa-wand-magic-sparkles',
         title: 'Interfaces that explain themselves',
-        text: 'Screens designed for usability: clear hierarchy, few clicks and no manual required.',
+        text: 'Clear hierarchy, few clicks and no manual required.',
       },
       {
         icon: 'fas fa-plug',
         title: 'Integrations that hold up',
-        text: 'Meta, TikTok, Google and LinkedIn APIs: OAuth, tokens, rate limits and publishing errors handled end to end.',
+        text: 'OAuth, tokens, rate limits and publishing errors handled end to end.',
       },
       {
-        icon: 'fas fa-vial-circle-check',
-        title: 'Automated quality',
-        text: 'Cypress E2E tests on the critical flows, so releases reach production without surprises.',
+        icon: 'fas fa-cube',
+        title: 'Code that outlives the project',
+        text: 'Whatever repeats becomes a library. bandeira-ui started that way and is a public package today.',
       },
     ],
   },
@@ -104,7 +103,7 @@ export const CONTENT_EN: SiteContent = {
           'Backend for the publishing routines and status feedback to the dashboard, in Laravel',
           'Screens for the creator–brand matching flow, focused on usability and immediate readability of the data',
           'Design system of reusable Angular components, keeping visual consistency across the product',
-          'Figma prototypes aligned with product before development — less rework and a clearer scope',
+          'Alignment with product ahead of each delivery, cutting mid-flight scope changes',
           'Automated end-to-end tests with Cypress covering the platform’s critical flows',
         ],
         stack: [
@@ -129,7 +128,7 @@ export const CONTENT_EN: SiteContent = {
         summary:
           'Internal management system, owning both the frontend and the backend of the features delivered.',
         achievements: [
-          'Wireframes and screen prototypes before development, aligned with the system’s users',
+          'Research with the internal users before defining each screen of the system',
           'Data modelling and implementation of business rules on the backend',
           'Reactive interfaces in Angular with reusable components',
           'Query optimization and performance tuning on critical screens',
@@ -157,7 +156,7 @@ export const CONTENT_EN: SiteContent = {
       {
         icon: 'fas fa-code',
         title: 'Build',
-        text: 'Angular frontend on top of a design system, backend and integrations in Laravel. Reusable components from day one.',
+        text: 'Angular frontend on top of my own component library; backend and integrations in Laravel.',
       },
       {
         icon: 'fas fa-rocket',
@@ -170,7 +169,7 @@ export const CONTENT_EN: SiteContent = {
   projects: {
     eyebrow: 'Portfolio',
     title: 'Personal projects',
-    sub: 'Ideas I took off the ground on my own — from the first sketch to deployment. Team work is under <a href="#experiencia">Experience</a>.',
+    sub: 'What I built on my own, from the first stroke to going live. Team work is under <a href="#experiencia">Experience</a>.',
     labelProblem: 'Problem',
     labelSolution: 'Solution',
     featured: 'Featured',
@@ -191,11 +190,32 @@ export const CONTENT_EN: SiteContent = {
           'REST API in Laravel with PostgreSQL',
         ],
         tech: ['Angular', 'TypeScript', 'Laravel', 'PostgreSQL'],
-        video: '/vitalityPlus.mp4',
+        video: '/vitality-plus.webm',
+        poster: '/vitality-plus-poster.webp',
         github: 'https://github.com/joaopedro-wq/sakai-ng',
         featured: true,
       },
     ],
+    designSystem: {
+      name: 'bandeira-ui',
+      tagline: 'An Angular design system, published to npm',
+      problem:
+        'Every new system starts over with the button, the card and the modal — redoing, one by one, decisions already made dozens of times.',
+      solution:
+        'A library that answers it once: 31 components, 4 whole screen structures and a palette where changing one variable changes the entire system.',
+      highlights: [
+        'Virtualised table: ten thousand rows cost the same as thirty',
+        'Guided tour that reports which step the user dropped off at',
+        'Keyboard, focus and screen reader checked component by component',
+      ],
+      chips: ['Angular 20', '102 tests', 'npm', 'MIT'],
+      cta: 'Read the docs',
+      ctaCode: 'Source',
+      ctaNpm: 'npm',
+      docsUrl: 'https://bandeira-ui.vercel.app/',
+      githubUrl: 'https://github.com/joaopedro-wq/bandeira-ui',
+      npmUrl: 'https://www.npmjs.com/package/bandeira-ui',
+    },
     ctaCard: {
       title: 'More projects on GitHub',
       text: 'Experiments, studies and everyday code — always evolving.',
