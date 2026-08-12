@@ -4,12 +4,7 @@ dist/
 .angular/
 .env
 
-# Laravel
-/vendor
-/.env
-.phpunit.result.cache
-/public/storage
-/storage/*.key
+# Logs
 *.log
 
 # IDE
