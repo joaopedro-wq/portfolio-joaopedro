@@ -129,6 +129,9 @@
           <div class="metric" bdReveal="scale" [revealDelay]="i * 90">
             <span class="metric-value" [bdCountUp]="m.value" [suffix]="m.suffix"></span>
             <span class="metric-label">{{ m.label }}</span>
+            @if (m.detail) {
+              <span class="metric-detail">{{ m.detail }}</span>
+            }
           </div>
         }
       </div>
@@ -444,16 +447,14 @@
       >
         @for (group of c().skills.groups; track group.id) {
           @if (selectedTab() === group.id) {
-            <ul class="skill-list" [@fadeSlide] [@listStagger]>
-              @for (item of group.items; track item.name) {
-                <li>
-                  <span class="skill-name">{{ item.name }}</span>
-                  <span class="skill-level" [attr.data-level]="item.level">
-                    {{ c().skills.levels[item.level] }}
-                  </span>
-                </li>
-              }
-            </ul>
+            <div class="skill-group" [@fadeSlide]>
+              <p class="skill-summary">{{ group.summary }}</p>
+              <ul class="skill-list" [@listStagger]>
+                @for (item of group.items; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
           }
         }
       </div>

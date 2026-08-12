@@ -584,7 +584,18 @@ main {
     display: block;
     margin-top: 0.15rem;
     font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  /* O número chama; esta linha é quem responde "de quê?". */
+  .metric-detail {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.76rem;
+    line-height: 1.45;
     color: var(--fg-muted);
+    text-wrap: balance;
   }
 }
 
@@ -1306,58 +1317,46 @@ main {
   margin: 0 auto;
 }
 
+/*
+ * Uma frase por domínio, e as tecnologias como etiquetas. Sem escala de
+ * proficiência: a lista antiga era uma linha por item com um selo à direita,
+ * o que dava altura e convidava a comparar rótulos que ninguém pode conferir.
+ */
+.skill-group {
+  text-align: center;
+}
+
+.skill-summary {
+  color: var(--fg-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 0 auto 1.5rem;
+  text-wrap: balance;
+}
+
 .skill-list {
   list-style: none;
-  display: grid;
-  gap: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
 
   li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 1.15rem;
+    padding: 0.5rem 1rem;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    border-radius: var(--radius-full);
+    color: var(--fg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
     &:hover {
-      transform: translateX(5px);
+      transform: translateY(-2px);
       border-color: var(--primary);
+      color: var(--primary);
     }
-  }
-}
-
-.skill-name {
-  color: var(--fg);
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
-.skill-level {
-  flex-shrink: 0;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: capitalize;
-
-  /* A chave é sempre em inglês; o rótulo visível vem traduzido do content. */
-  &[data-level='advanced'] {
-    background: var(--accent-soft);
-    color: var(--accent);
-  }
-
-  &[data-level='intermediate'] {
-    background: var(--primary-soft);
-    color: var(--primary);
-  }
-
-  &[data-level='basic'] {
-    background: var(--glass);
-    color: var(--fg-subtle);
-    border: 1px solid var(--border);
   }
 }
 

@@ -45,13 +45,18 @@ export interface Experience {
   stack: string[];
 }
 
-export type SkillLevel = 'advanced' | 'intermediate' | 'basic';
-
+/**
+ * Domínio de atuação e as tecnologias dele. Sem escala de proficiência:
+ * autoavaliação não é verificável, e "intermediário" só levanta dúvida —
+ * a profundidade real está nos projetos e no GitHub.
+ */
 export interface SkillGroup {
   id: string;
   label: string;
   icon: string;
-  items: { name: string; level: SkillLevel }[];
+  /** Resume o que a pessoa faz nesse domínio. */
+  summary: string;
+  items: string[];
 }
 
 export interface MiniCard {
@@ -70,6 +75,8 @@ export interface Metric {
   value: number;
   suffix: string;
   label: string;
+  /** Linha de contexto: o número sozinho não diz o que foi feito. */
+  detail?: string;
 }
 
 export interface SiteContent {
@@ -166,7 +173,6 @@ export interface SiteContent {
     title: string;
     sub: string;
     tablistLabel: string;
-    levels: Record<SkillLevel, string>;
     groups: SkillGroup[];
   };
 
