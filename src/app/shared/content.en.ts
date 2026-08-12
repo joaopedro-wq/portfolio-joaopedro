@@ -172,6 +172,7 @@ export const CONTENT_EN: SiteContent = {
     sub: 'What I built on my own, from the first stroke to going live. Team work is under <a href="#experiencia">Experience</a>.',
     labelProblem: 'Problem',
     labelSolution: 'Solution',
+    whyExists: 'Why it exists',
     featured: 'Featured',
     code: 'Source code',
     liveDemo: 'Live demo',

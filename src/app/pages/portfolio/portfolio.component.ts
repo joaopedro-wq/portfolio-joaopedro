@@ -123,6 +123,17 @@ export class PortfolioComponent {
   /* Vídeo dos projetos                                               */
   /* ---------------------------------------------------------------- */
 
+  /**
+   * Larguras das células da miniatura da bandeira-ui, em porcentagem.
+   * Ficam aqui, e não no template, para o `@for` ter algo estável a rastrear.
+   */
+  readonly dsMockRows = [
+    { a: 34, b: 22, on: false },
+    { a: 44, b: 18, on: true },
+    { a: 28, b: 30, on: false },
+    { a: 38, b: 20, on: false },
+  ] as const;
+
   /** Vídeo já liberado (evita baixar MB antes do usuário pedir). */
   readonly videoAtivo = signal<string | null>(null);
 

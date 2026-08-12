@@ -172,6 +172,7 @@ export const CONTENT_PT: SiteContent = {
     sub: 'O que construí por conta própria, do primeiro traço até o ar. O trabalho em equipe está em <a href="#experiencia">Experiência</a>.',
     labelProblem: 'Problema',
     labelSolution: 'Solução',
+    whyExists: 'Por que existe',
     featured: 'Destaque',
     code: 'Código',
     liveDemo: 'Ver online',

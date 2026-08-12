@@ -239,43 +239,68 @@
         -->
         @if (c().projects.designSystem; as ds) {
           <article class="card project project-ds featured" bdReveal>
-            <div class="project-head">
-              <h3>{{ ds.name }}</h3>
-              <span class="badge-featured">
-                <i class="fas fa-swatchbook"></i> {{ c().projects.featured }}
-              </span>
-            </div>
-            <p class="project-tagline">{{ ds.tagline }}</p>
-
-            <dl class="project-detail">
-              <dt>{{ c().projects.labelProblem }}</dt>
-              <dd>{{ ds.problem }}</dd>
-              <dt>{{ c().projects.labelSolution }}</dt>
-              <dd>{{ ds.solution }}</dd>
-            </dl>
-
-            <ul class="achievements">
-              @for (h of ds.highlights; track h) {
-                <li><i class="fas fa-check"></i> {{ h }}</li>
-              }
-            </ul>
-
-            <div class="chip-row">
-              @for (t of ds.chips; track t) {
-                <span class="chip">{{ t }}</span>
-              }
+            <!--
+              A lib é a única coisa do portfólio que pode ser mostrada em vez
+              de descrita: a composição abaixo é feita com as próprias peças
+              (botão, tabela com linha selecionada), não uma captura de tela.
+            -->
+            <div class="project-media" aria-hidden="true">
+              <div class="ds-mock">
+                <div class="ds-mock__bar">
+                  <span class="ds-mock__pill"></span>
+                  <span class="ds-mock__pill ds-mock__pill--ghost"></span>
+                </div>
+                @for (linha of dsMockRows; track linha.a) {
+                  <div class="ds-mock__row" [class.is-on]="linha.on">
+                    <span class="ds-mock__cell" [style.width.%]="linha.a"></span>
+                    <span class="ds-mock__cell" [style.width.%]="linha.b"></span>
+                  </div>
+                }
+              </div>
             </div>
 
-            <div class="project-links">
-              <a [href]="ds.docsUrl" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
-                <i class="fas fa-book"></i> {{ ds.cta }}
-              </a>
-              <a [href]="ds.githubUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                <i class="fab fa-github"></i> {{ ds.ctaCode }}
-              </a>
-              <a [href]="ds.npmUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                <i class="fab fa-npm"></i> {{ ds.ctaNpm }}
-              </a>
+            <div class="project-body">
+              <div class="project-head">
+                <h3>{{ ds.name }}</h3>
+                <span class="badge-featured">
+                  <i class="fas fa-swatchbook"></i> {{ c().projects.featured }}
+                </span>
+              </div>
+              <p class="project-tagline">{{ ds.tagline }}</p>
+
+              <ul class="achievements">
+                @for (h of ds.highlights; track h) {
+                  <li><i class="fas fa-check"></i> {{ h }}</li>
+                }
+              </ul>
+
+              <div class="chip-row">
+                @for (t of ds.chips; track t) {
+                  <span class="chip">{{ t }}</span>
+                }
+              </div>
+
+              <details class="project-why">
+                <summary>{{ c().projects.whyExists }}</summary>
+                <dl class="project-detail">
+                  <dt>{{ c().projects.labelProblem }}</dt>
+                  <dd>{{ ds.problem }}</dd>
+                  <dt>{{ c().projects.labelSolution }}</dt>
+                  <dd>{{ ds.solution }}</dd>
+                </dl>
+              </details>
+
+              <div class="project-links">
+                <a [href]="ds.docsUrl" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                  <i class="fas fa-book"></i> {{ ds.cta }}
+                </a>
+                <a [href]="ds.githubUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                  <i class="fab fa-github"></i> {{ ds.ctaCode }}
+                </a>
+                <a [href]="ds.npmUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                  <i class="fab fa-npm"></i> {{ ds.ctaNpm }}
+                </a>
+              </div>
             </div>
           </article>
         }
@@ -287,18 +312,8 @@
             bdReveal
             [revealDelay]="(i + 1) * 120"
           >
-            <div class="project-head">
-              <h3>{{ project.title }}</h3>
-              @if (project.featured) {
-                <span class="badge-featured">
-                  <i class="fas fa-star"></i> {{ c().projects.featured }}
-                </span>
-              }
-            </div>
-            <p class="project-tagline">{{ project.tagline }}</p>
-
             @if (project.video; as videoSrc) {
-              <div class="video-wrapper">
+              <div class="project-media">
                 @if (videoAtivo() === videoSrc) {
                   <video
                     controls
@@ -326,48 +341,68 @@
               </div>
             }
 
-            <dl class="project-detail">
-              <dt>{{ c().projects.labelProblem }}</dt>
-              <dd>{{ project.problem }}</dd>
-              <dt>{{ c().projects.labelSolution }}</dt>
-              <dd>{{ project.solution }}</dd>
-            </dl>
+            <div class="project-body">
+              <div class="project-head">
+                <h3>{{ project.title }}</h3>
+                @if (project.featured) {
+                  <span class="badge-featured">
+                    <i class="fas fa-star"></i> {{ c().projects.featured }}
+                  </span>
+                }
+              </div>
+              <p class="project-tagline">{{ project.tagline }}</p>
 
-            <ul class="achievements">
-              @for (h of project.highlights; track h) {
-                <li><i class="fas fa-check"></i> {{ h }}</li>
-              }
-            </ul>
+              <ul class="achievements">
+                @for (h of project.highlights; track h) {
+                  <li><i class="fas fa-check"></i> {{ h }}</li>
+                }
+              </ul>
 
-            <div class="chip-row">
-              @for (t of project.tech; track t) {
-                <span class="chip">{{ t }}</span>
-              }
-            </div>
+              <div class="chip-row">
+                @for (t of project.tech; track t) {
+                  <span class="chip">{{ t }}</span>
+                }
+              </div>
 
-            <div class="project-links">
-              @if (project.github) {
-                <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fab fa-github"></i> {{ c().projects.code }}
-                </a>
-              }
-              @if (project.demo) {
-                <a [href]="project.demo" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fas fa-arrow-up-right-from-square"></i> {{ c().projects.liveDemo }}
-                </a>
-              }
-              @if (project.note) {
-                <p class="project-note"><i class="fas fa-lock"></i> {{ project.note }}</p>
-              }
+              <details class="project-why">
+                <summary>{{ c().projects.whyExists }}</summary>
+                <dl class="project-detail">
+                  <dt>{{ c().projects.labelProblem }}</dt>
+                  <dd>{{ project.problem }}</dd>
+                  <dt>{{ c().projects.labelSolution }}</dt>
+                  <dd>{{ project.solution }}</dd>
+                </dl>
+              </details>
+
+              <div class="project-links">
+                @if (project.github) {
+                  <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    <i class="fab fa-github"></i> {{ c().projects.code }}
+                  </a>
+                }
+                @if (project.demo) {
+                  <a [href]="project.demo" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    <i class="fas fa-arrow-up-right-from-square"></i> {{ c().projects.liveDemo }}
+                  </a>
+                }
+                @if (project.note) {
+                  <p class="project-note"><i class="fas fa-lock"></i> {{ project.note }}</p>
+                }
+              </div>
             </div>
           </article>
         }
 
-        <!-- Convite: mantém a seção viva enquanto novos projetos não entram -->
-        <article class="card project project-cta" bdReveal [revealDelay]="240">
+        <!--
+          Em linha, e não mais como card: na grade antiga ele tapava o buraco
+          de uma coluna vazia — função que deixou de existir.
+        -->
+        <article class="project-invite" bdReveal [revealDelay]="180">
           <i class="fas fa-code-branch"></i>
-          <h3>{{ c().projects.ctaCard.title }}</h3>
-          <p>{{ c().projects.ctaCard.text }}</p>
+          <div>
+            <h3>{{ c().projects.ctaCard.title }}</h3>
+            <p>{{ c().projects.ctaCard.text }}</p>
+          </div>
           <a [href]="github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
             <i class="fab fa-github"></i> {{ c().projects.ctaCard.button }}
           </a>

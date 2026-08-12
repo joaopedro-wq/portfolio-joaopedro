@@ -133,6 +133,8 @@ export interface SiteContent {
     sub: string;
     labelProblem: string;
     labelSolution: string;
+    /** Rótulo do bloco recolhível que abre Problema e Solução. */
+    whyExists: string;
     featured: string;
     code: string;
     liveDemo: string;
