@@ -25,7 +25,7 @@ export const CONTENT_EN: SiteContent = {
   hero: {
     badge: 'Open to new opportunities',
     title:
-      "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — I design and build complete web systems.",
+      "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — <strong>design and code in the same person</strong>.",
     lead:
       '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I take products <strong>from the Figma prototype to deployment</strong>: I design the interface and build the backend behind it.',
     pills: [
@@ -74,8 +74,8 @@ export const CONTENT_EN: SiteContent = {
 
   about: {
     eyebrow: 'About me',
-    title: 'Design and code in the same person',
-    sub: 'What changes when design and code do not pass through different hands.',
+    title: 'What that changes in practice',
+    sub: 'When design and code do not pass through different hands, something stops getting lost.',
     paragraphs: [
       'In most teams there is a seam between whoever designs and whoever codes. What was intended on one side arrives distorted on the other, and the gap shows up in the schedule. <strong>With me that seam does not exist</strong>: the same person decides the interface and builds it.',
       'That changes what reaches the user. The interface is discussed and corrected while changing it is still cheap — not once it is finished. What is left is an <strong>interface that explains itself</strong>: clear hierarchy, few clicks, no manual.',

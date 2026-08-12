@@ -25,7 +25,7 @@ export const CONTENT_PT: SiteContent = {
   hero: {
     badge: 'Disponível para novas oportunidades',
     title:
-      'Olá, sou <span class="gradient-text">João Pedro</span> — desenho e construo sistemas web completos.',
+      'Olá, sou <span class="gradient-text">João Pedro</span> — <strong>design e código na mesma pessoa</strong>.',
     lead:
       'Desenvolvedor <strong>Full-stack</strong> com +3 anos de experiência em <strong>Angular</strong> e <strong>Laravel</strong>. Vou do <strong>protótipo no Figma ao deploy</strong>: desenho a interface e construo o backend por trás dela.',
     pills: [
@@ -74,8 +74,8 @@ export const CONTENT_PT: SiteContent = {
 
   about: {
     eyebrow: 'Sobre mim',
-    title: 'Design e código na mesma pessoa',
-    sub: 'O que muda quando desenho e código não passam por mãos diferentes.',
+    title: 'O que isso muda na prática',
+    sub: 'Quando desenho e código não passam por mãos diferentes, alguma coisa deixa de se perder.',
     paragraphs: [
       'Na maioria dos times existe uma emenda entre quem desenha e quem programa. O que foi pensado de um lado chega deformado do outro, e a diferença aparece no prazo. <strong>Comigo essa emenda não existe</strong>: a mesma pessoa decide a interface e a constrói.',
       'Isso muda o que chega ao usuário. A interface é discutida e corrigida enquanto mudar ainda é barato — não depois de pronta. O que sobra é uma <strong>interface que se explica sozinha</strong>: hierarquia clara, poucos cliques, nenhum manual.',
