@@ -23,11 +23,11 @@ export const CONTENT_EN: SiteContent = {
   },
 
   hero: {
-    badge: 'Open to new opportunities',
+    badge: 'Full-stack developer · Angular & Laravel',
     title:
-      "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — <strong>design and code in the same person</strong>.",
+      "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — <strong>a full-stack developer with a product mindset</strong>.",
     lead:
-      '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I take products <strong>from the Figma prototype to deployment</strong>: I design the interface and build the backend behind it.',
+      '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I turn business problems into clear, functional and maintainable web products — from <strong>Figma flows to implementation and delivery</strong>.',
     pills: [
       'Angular',
       'TypeScript',
@@ -38,7 +38,7 @@ export const CONTENT_EN: SiteContent = {
       'Cypress',
       'PostgreSQL',
     ],
-    ctaTalk: 'Talk about an opportunity',
+    ctaTalk: "Let's talk",
     ctaProjects: 'See projects',
     ctaCv: 'Download CV',
     location: 'Espírito Santo, Brazil · Available for remote work',
@@ -74,23 +74,23 @@ export const CONTENT_EN: SiteContent = {
 
   about: {
     eyebrow: 'About me',
-    title: 'What that changes in practice',
-    sub: 'When design and code do not pass through different hands, something stops getting lost.',
+    title: 'Product, interface and engineering in one flow',
+    sub: 'I understand the problem, shape the experience and build the solution with attention to technical detail.',
     paragraphs: [
-      'In most teams there is a seam between whoever designs and whoever codes. What was intended on one side arrives distorted on the other, and the gap shows up in the schedule. <strong>With me that seam does not exist</strong>: the same person decides the interface and builds it.',
-      'That changes what reaches the user. The interface is discussed and corrected while changing it is still cheap — not once it is finished. What is left is an <strong>interface that explains itself</strong>: clear hierarchy, few clicks, no manual.',
+      'I work across product, UX/UI and engineering: I understand business rules, organise flows and turn product decisions into interfaces that work in practice.',
+      'This integrated view helps surface problems early, reduce rework and deliver more consistent experiences — while keeping architecture, performance and maintenance in focus.',
       'I apply this today at <strong>CoCreator Collab</strong>, working on both ends: the interface in <strong>Angular</strong> and the backend in <strong>Laravel</strong>. The detail of each delivery is under <a href="#experiencia">Experience</a>.',
     ],
     cards: [
       {
         icon: 'fas fa-pen-ruler',
-        title: 'One head, not two',
-        text: 'Whoever designs the interface is the one who builds it. Nothing is lost in the handover between steps.',
+        title: 'Product mindset',
+        text: 'I connect user needs, business rules and technical decisions before turning them into code.',
       },
       {
         icon: 'fas fa-wand-magic-sparkles',
-        title: 'Interfaces that explain themselves',
-        text: 'Clear hierarchy, few clicks and no manual required.',
+        title: 'Clear experiences',
+        text: 'Interfaces with hierarchy, feedback and flows that help users move forward without a manual.',
       },
       {
         icon: 'fas fa-plug',
@@ -99,8 +99,8 @@ export const CONTENT_EN: SiteContent = {
       },
       {
         icon: 'fas fa-cube',
-        title: 'Code that outlives the project',
-        text: 'Whatever repeats becomes a library. bandeira-ui started that way and is a public package today.',
+        title: 'Sustainable engineering',
+        text: 'Reusable components, tests and patterns that make products more consistent and easier to evolve.',
       },
     ],
   },
@@ -108,7 +108,7 @@ export const CONTENT_EN: SiteContent = {
   experience: {
     eyebrow: 'Career',
     title: 'Professional experience',
-    sub: 'Where I applied design, code and testing — and what actually shipped.',
+    sub: 'Experiences where I turned product needs into interfaces, integrations and software in production.',
     items: [
       {
         role: 'Full-stack Developer & UI/UX',
@@ -161,7 +161,7 @@ export const CONTENT_EN: SiteContent = {
   process: {
     eyebrow: 'How I work',
     title: 'From the problem to a screen in production',
-    sub: 'The same process on every project — it is what keeps deadlines predictable and rework low.',
+    sub: 'A simple process to align context, validate decisions and deliver with confidence.',
     steps: [
       {
         icon: 'fas fa-magnifying-glass',
@@ -188,32 +188,45 @@ export const CONTENT_EN: SiteContent = {
 
   projects: {
     eyebrow: 'Portfolio',
-    title: 'Personal projects',
-    sub: 'What I built on my own, from the first stroke to going live. Team work is under <a href="#experiencia">Experience</a>.',
+    title: 'Projects and open-source initiatives',
+    sub: 'Products and tools I built to solve real problems and deepen my engineering practice.',
     labelProblem: 'Problem',
     labelSolution: 'Solution',
     whyExists: 'Why it exists',
     featured: 'Featured',
-    code: 'Source code',
+    code: 'Frontend',
+    backendCode: 'Backend',
     liveDemo: 'Live demo',
     playVideo: 'Watch the demo',
     items: [
       {
         title: 'Vitality PLUS',
-        tagline: 'Nutrition tracking and health goal monitoring',
+        tagline: 'Full-stack platform for personalised nutrition',
         problem:
-          'People following a diet have to add up calories and macronutrients by hand, which leads to mistakes and abandonment.',
+          'Keeping track of nutrition means organising profile data, goals, foods and meals in different places, making the routine hard to sustain.',
         solution:
-          'Full-stack application that logs meals, automatically calculates daily intake and tracks the progress of the user’s goals.',
+          'Full-stack application that brings nutritional goals, a food catalogue, meal plans and a daily diary into one guided experience.',
         highlights: [
-          'Automatic calculation of calories and macros per meal',
-          'Goal dashboard with daily tracking',
-          'REST API in Laravel with PostgreSQL',
+          'Guided quiz with goals calculated using the Mifflin–St Jeor equation',
+          'Food diary with portions, editable history and intake tracking',
+          'Meal plans generated with Google Gemini generative AI',
+          'Laravel REST API with Sanctum authentication, food catalogue and admin area',
         ],
-        tech: ['Angular', 'TypeScript', 'Laravel', 'PostgreSQL'],
+        tech: [
+          'Angular 20',
+          'TypeScript',
+          'Laravel 11',
+          'PHP',
+          'PostgreSQL / MySQL',
+          'Google Gemini',
+          'Tailwind CSS',
+          'bandeira-ui',
+          'PHPUnit',
+        ],
         video: '/vitality-plus.webm',
         poster: '/vitality-plus-poster.webp',
-        github: 'https://github.com/joaopedro-wq/sakai-ng',
+        github: 'https://github.com/joaopedro-wq/vitality-front',
+        backend: 'https://github.com/joaopedro-wq/vitality-Back',
         featured: true,
       },
     ],
@@ -247,7 +260,7 @@ export const CONTENT_EN: SiteContent = {
   skills: {
     eyebrow: 'Stack',
     title: 'Skills & Tools',
-    sub: 'What I use day to day, by domain. The depth is in the projects.',
+    sub: 'Technologies and practices I apply when building web products.',
     tablistLabel: 'Domains',
     groups: [
       {
@@ -312,8 +325,8 @@ export const CONTENT_EN: SiteContent = {
 
   contact: {
     eyebrow: 'Contact',
-    title: 'Shall we build something together?',
-    text: 'I am open to full-stack roles, interface projects and partnerships. I reply within 24 hours — write below or pick the channel you prefer.',
+    title: 'Let’s talk',
+    text: 'If you would like to talk about product, technology, interface projects or a partnership, write below or pick the channel you prefer. I reply within 24 hours.',
     whatsapp: 'Message on WhatsApp',
     email: 'Send an email',
     linkedin: 'LinkedIn',

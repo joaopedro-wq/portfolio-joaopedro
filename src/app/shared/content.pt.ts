@@ -23,11 +23,11 @@ export const CONTENT_PT: SiteContent = {
   },
 
   hero: {
-    badge: 'Disponível para novas oportunidades',
+    badge: 'Desenvolvedor Full Stack · Angular & Laravel',
     title:
-      'Olá, sou <span class="gradient-text">João Pedro</span> — <strong>design e código na mesma pessoa</strong>.',
+      'Olá, sou <span class="gradient-text">João Pedro</span> — <strong>desenvolvedor Full Stack com visão de produto</strong>.',
     lead:
-      'Desenvolvedor <strong>Full-stack</strong> com +3 anos de experiência em <strong>Angular</strong> e <strong>Laravel</strong>. Vou do <strong>protótipo no Figma ao deploy</strong>: desenho a interface e construo o backend por trás dela.',
+      'Desenvolvedor <strong>Full Stack</strong> com mais de 3 anos de experiência em <strong>Angular</strong> e <strong>Laravel</strong>. Transformo problemas de negócio em produtos web claros, funcionais e sustentáveis — do fluxo no <strong>Figma à implementação e entrega</strong>.',
     pills: [
       'Angular',
       'TypeScript',
@@ -38,7 +38,7 @@ export const CONTENT_PT: SiteContent = {
       'Cypress',
       'PostgreSQL',
     ],
-    ctaTalk: 'Falar sobre uma oportunidade',
+    ctaTalk: 'Vamos conversar',
     ctaProjects: 'Ver projetos',
     ctaCv: 'Baixar CV',
     location: 'Espírito Santo, Brasil · Disponível para remoto',
@@ -74,23 +74,23 @@ export const CONTENT_PT: SiteContent = {
 
   about: {
     eyebrow: 'Sobre mim',
-    title: 'O que isso muda na prática',
-    sub: 'Quando desenho e código não passam por mãos diferentes, alguma coisa deixa de se perder.',
+    title: 'Produto, interface e engenharia no mesmo fluxo',
+    sub: 'Entendo o problema, desenho a experiência e construo a solução com atenção aos detalhes técnicos.',
     paragraphs: [
-      'Na maioria dos times existe uma emenda entre quem desenha e quem programa. O que foi pensado de um lado chega deformado do outro, e a diferença aparece no prazo. <strong>Comigo essa emenda não existe</strong>: a mesma pessoa decide a interface e a constrói.',
-      'Isso muda o que chega ao usuário. A interface é discutida e corrigida enquanto mudar ainda é barato — não depois de pronta. O que sobra é uma <strong>interface que se explica sozinha</strong>: hierarquia clara, poucos cliques, nenhum manual.',
+      'Atuo entre produto, UX/UI e engenharia: entendo as regras de negócio, organizo os fluxos e transformo decisões de produto em interfaces que funcionam na prática.',
+      'Essa visão integrada ajuda a encontrar problemas cedo, reduzir retrabalho e entregar experiências mais consistentes — sem perder de vista arquitetura, performance e manutenção.',
       'Hoje aplico isso no <strong>CoCreator Collab</strong>, atuando nas duas pontas: a interface em <strong>Angular</strong> e o backend em <strong>Laravel</strong>. O detalhe de cada entrega está em <a href="#experiencia">Experiência</a>.',
     ],
     cards: [
       {
         icon: 'fas fa-pen-ruler',
-        title: 'Uma cabeça só',
-        text: 'Quem desenha a interface é quem a constrói. Nada se perde na passagem entre uma etapa e outra.',
+        title: 'Visão de produto',
+        text: 'Conecto necessidades do usuário, regras de negócio e decisões técnicas antes de transformar tudo em código.',
       },
       {
         icon: 'fas fa-wand-magic-sparkles',
-        title: 'Interfaces que se explicam',
-        text: 'Hierarquia clara, poucos cliques e nenhum manual necessário.',
+        title: 'Experiência clara',
+        text: 'Interfaces com hierarquia, feedback e fluxos que ajudam o usuário a avançar sem depender de manual.',
       },
       {
         icon: 'fas fa-plug',
@@ -99,8 +99,8 @@ export const CONTENT_PT: SiteContent = {
       },
       {
         icon: 'fas fa-cube',
-        title: 'Código que sobrevive ao projeto',
-        text: 'O que se repete vira biblioteca. A bandeira-ui nasceu assim e hoje é um pacote público.',
+        title: 'Engenharia sustentável',
+        text: 'Componentes reutilizáveis, testes e padrões que tornam o produto mais consistente e simples de evoluir.',
       },
     ],
   },
@@ -108,7 +108,7 @@ export const CONTENT_PT: SiteContent = {
   experience: {
     eyebrow: 'Trajetória',
     title: 'Experiência profissional',
-    sub: 'Onde apliquei design, código e testes — e o que ficou entregue.',
+    sub: 'Experiências em que transformei necessidades de produto em interfaces, integrações e software em produção.',
     items: [
       {
         role: 'Desenvolvedor Full-stack & UI/UX',
@@ -161,7 +161,7 @@ export const CONTENT_PT: SiteContent = {
   process: {
     eyebrow: 'Como eu trabalho',
     title: 'Do problema à tela em produção',
-    sub: 'O mesmo processo em todo projeto — é o que mantém o prazo previsível e o retrabalho baixo.',
+    sub: 'Um processo simples para alinhar contexto, validar decisões e entregar com segurança.',
     steps: [
       {
         icon: 'fas fa-magnifying-glass',
@@ -188,32 +188,45 @@ export const CONTENT_PT: SiteContent = {
 
   projects: {
     eyebrow: 'Portfólio',
-    title: 'Projetos pessoais',
-    sub: 'O que construí por conta própria, do primeiro traço até o ar. O trabalho em equipe está em <a href="#experiencia">Experiência</a>.',
+    title: 'Projetos e iniciativas open source',
+    sub: 'Produtos e ferramentas que construí para resolver problemas reais e aprofundar minha prática de engenharia.',
     labelProblem: 'Problema',
     labelSolution: 'Solução',
     whyExists: 'Por que existe',
     featured: 'Destaque',
-    code: 'Código',
+    code: 'Frontend',
+    backendCode: 'Backend',
     liveDemo: 'Ver online',
     playVideo: 'Ver demonstração',
     items: [
       {
         title: 'Vitality PLUS',
-        tagline: 'Registro nutricional e acompanhamento de metas de saúde',
+        tagline: 'Plataforma Full Stack de nutrição personalizada',
         problem:
-          'Quem acompanha dieta precisa somar calorias e macronutrientes manualmente, o que gera erro e abandono.',
+          'Acompanhar a alimentação exige organizar perfil, metas, alimentos e refeições em diferentes lugares, tornando a rotina difícil de manter.',
         solution:
-          'Aplicação full-stack que registra refeições, calcula automaticamente o consumo diário e acompanha a evolução das metas do usuário.',
+          'Aplicação Full Stack que centraliza metas nutricionais, biblioteca de alimentos, planos alimentares e diário de refeições em uma experiência guiada.',
         highlights: [
-          'Cálculo automático de calorias e macros por refeição',
-          'Painel de metas com acompanhamento diário',
-          'API REST em Laravel com PostgreSQL',
+          'Quiz guiado com cálculo de metas pela fórmula de Mifflin-St Jeor',
+          'Diário alimentar com porções, histórico editável e acompanhamento de consumo',
+          'Planos alimentares gerados com IA generativa via Google Gemini',
+          'API REST em Laravel com autenticação Sanctum, catálogo de alimentos e área administrativa',
         ],
-        tech: ['Angular', 'TypeScript', 'Laravel', 'PostgreSQL'],
+        tech: [
+          'Angular 20',
+          'TypeScript',
+          'Laravel 11',
+          'PHP',
+          'PostgreSQL / MySQL',
+          'Google Gemini',
+          'Tailwind CSS',
+          'bandeira-ui',
+          'PHPUnit',
+        ],
         video: '/vitality-plus.webm',
         poster: '/vitality-plus-poster.webp',
-        github: 'https://github.com/joaopedro-wq/sakai-ng',
+        github: 'https://github.com/joaopedro-wq/vitality-front',
+        backend: 'https://github.com/joaopedro-wq/vitality-Back',
         featured: true,
       },
     ],
@@ -247,7 +260,7 @@ export const CONTENT_PT: SiteContent = {
   skills: {
     eyebrow: 'Stack',
     title: 'Habilidades & Ferramentas',
-    sub: 'O que uso no dia a dia, por domínio. A profundidade está nos projetos.',
+    sub: 'Tecnologias e práticas que aplico no desenvolvimento de produtos web.',
     tablistLabel: 'Domínios de atuação',
     groups: [
       {
@@ -312,8 +325,8 @@ export const CONTENT_PT: SiteContent = {
 
   contact: {
     eyebrow: 'Contato',
-    title: 'Vamos construir algo juntos?',
-    text: 'Estou aberto a vagas full-stack, projetos de interface e parcerias. Respondo em até 24 horas — escreva abaixo ou escolha o canal que preferir.',
+    title: 'Vamos conversar?',
+    text: 'Se quiser conversar sobre produto, tecnologia, projetos de interface ou uma parceria, escreva abaixo ou escolha o canal que preferir. Respondo em até 24 horas.',
     whatsapp: 'Chamar no WhatsApp',
     email: 'Enviar e-mail',
     linkedin: 'LinkedIn',

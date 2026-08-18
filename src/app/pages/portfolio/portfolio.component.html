@@ -383,6 +383,11 @@
                     <i class="fab fa-github"></i> {{ c().projects.code }}
                   </a>
                 }
+                @if (project.backend) {
+                  <a [href]="project.backend" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    <i class="fas fa-server"></i> {{ c().projects.backendCode }}
+                  </a>
+                }
                 @if (project.demo) {
                   <a [href]="project.demo" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
                     <i class="fas fa-arrow-up-right-from-square"></i> {{ c().projects.liveDemo }}

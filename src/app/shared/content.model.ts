@@ -18,17 +18,14 @@ export type SectionId =
 export interface Project {
   title: string;
   tagline: string;
-  /** Contexto: qual problema o projeto resolve. */
   problem: string;
-  /** O que foi construído e como. */
   solution: string;
-  /** Entregas concretas — é o que convence quem contrata. */
   highlights: string[];
   tech: string[];
   video?: string;
-  /** Frame estático exibido antes de o usuário pedir o vídeo. */
   poster?: string;
   github?: string;
+  backend?: string;
   demo?: string;
   featured?: boolean;
   /** Aviso exibido no rodapé do card — ex.: código proprietário. */
@@ -144,6 +141,7 @@ export interface SiteContent {
     whyExists: string;
     featured: string;
     code: string;
+    backendCode: string;
     liveDemo: string;
     playVideo: string;
     items: Project[];

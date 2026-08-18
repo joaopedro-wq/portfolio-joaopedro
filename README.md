@@ -1,95 +1,115 @@
-# 🖥️ Portfólio — João Pedro Bandeira
+# Portfólio — João Pedro Bandeira
 
-Portfólio pessoal de um desenvolvedor Full-stack, construído para converter visitas em conversas: proposta de valor clara, prova de trabalho e contato a um clique em qualquer ponto da página.
+Portfólio pessoal de João Pedro Bandeira, desenvolvedor Full Stack com mais de 3 anos de experiência na construção de produtos web com Angular, TypeScript, PHP e Laravel.
 
-**🔗 Acesse:** https://joaopedro-wq.github.io/portfolio-joaopedro/
+O site foi criado para apresentar, em um único lugar, minha experiência profissional, meu processo de trabalho, projetos open source e formas de contato.
 
----
+**Acesse o portfólio:** [portfolio-joaopedro-six.vercel.app](https://portfolio-joaopedro-six.vercel.app/)
 
-Este repositório é um monorepo com dois projetos:
+## O que o projeto demonstra
 
-| Projeto | O que é |
-|---|---|
-| `portfolio-joaopedro` | O site do portfólio |
-| [`jp-ui`](projects/jp-ui/README.md) | Design system em Angular, publicável no npm — showcase em [/design-system](https://joaopedro-wq.github.io/portfolio-joaopedro/design-system) |
+- Desenvolvimento de uma aplicação Angular moderna com componentes standalone, Signals e carregamento lazy.
+- Organização de conteúdo em português e inglês com serviço de internacionalização próprio.
+- Interface responsiva com temas claro e escuro, design tokens e interações acessíveis.
+- Formulário de contato com validação, estados de envio e fallback para `mailto:`.
+- SEO técnico com metatags, Open Graph, Twitter Cards, sitemap, robots.txt e dados estruturados.
+- Animações de entrada, contadores de métricas e reprodução de vídeos sob demanda.
+- Uso da biblioteca própria [bandeira-ui](https://bandeira-ui.vercel.app/) para componentes e comportamentos reutilizáveis.
 
-## ✨ Destaques
+## Projetos em destaque
 
-- **Design system próprio** — a biblioteca `jp-ui` alimenta o site e tem página de documentação navegável
-- **Bilíngue PT/EN** — alternador no header, sem recarregar a página, com `lang` do documento e preferência persistida
-- **Hero orientado a conversão** — proposta de valor, selo de disponibilidade e CTAs diretos (WhatsApp, e-mail, projetos)
-- **Timeline de experiência** com entregas concretas por posição
-- **Seção "Como eu trabalho"** — o processo em 4 etapas, do descobrimento ao deploy
-- **Projetos no formato problema → solução → resultado**
-- **Formulário de contato funcional** com validação reativa, estados de envio e fallback para `mailto:`
-- **Animação de scroll** — `IntersectionObserver` revelando cada bloco e contadores animados nas métricas
-- **Tema claro/escuro** persistido em `localStorage`, sem flash na primeira pintura
-- **Vídeos sob demanda** — os MB só são baixados após o clique do usuário
-- **SEO completo** — Open Graph, Twitter Card e JSON-LD (`schema.org/Person`)
-- **Acessível** — skip link, navegação por teclado, `aria-*` em tabs/menu/modal/formulário, `prefers-reduced-motion`
+### Vitality PLUS
 
-## 🚀 Stack
+Plataforma Full Stack de nutrição personalizada, desenvolvida com Angular 20 e Laravel 11. O produto reúne metas nutricionais, diário alimentar, catálogo de alimentos, planos gerados com Google Gemini e autenticação com Laravel Sanctum.
 
-Angular 20 (standalone, signals, `@if`/`@for`, `OnPush`) · TypeScript · Reactive Forms · SCSS com design tokens · Angular Animations · ngx-toastr · Font Awesome
+- [Frontend — Angular](https://github.com/joaopedro-wq/vitality-front)
+- [Backend — Laravel](https://github.com/joaopedro-wq/vitality-Back)
 
-## 🛠️ Rodando localmente
+### bandeira-ui
+
+Biblioteca de componentes Angular publicada no npm, criada a partir de desafios reais de produto e focada em consistência visual, acessibilidade e reutilização.
+
+- [Documentação](https://bandeira-ui.vercel.app/)
+- [Código-fonte](https://github.com/joaopedro-wq/bandeira-ui)
+- [Pacote no npm](https://www.npmjs.com/package/bandeira-ui)
+
+## Stack
+
+- Angular 20 — standalone components, Signals, `@if`, `@for` e `OnPush`
+- TypeScript
+- Reactive Forms
+- SCSS e design tokens
+- Angular Animations
+- RxJS
+- bandeira-ui
+- ngx-toastr
+- Font Awesome
+- GitHub Pages / hospedagem estática
+
+## Executando localmente
+
+Requisitos: Node.js e npm.
 
 ```bash
 npm install
-npm start          # http://localhost:4200
-npm run build      # build de produção (gera 404.html para as rotas no GitHub Pages)
-npm test           # testes unitários
-npm run build:lib  # empacota a jp-ui em dist/jp-ui
-npm run deploy     # build + publicação no GitHub Pages
+npm start
 ```
 
-## 📁 Estrutura
+A aplicação ficará disponível em `http://localhost:4200`.
 
+Para gerar o build de produção:
+
+```bash
+npm run build
 ```
-public/                       imagens e vídeos de demonstração
-scripts/spa-fallback.mjs      copia index.html → 404.html (rotas no GitHub Pages)
-projects/jp-ui/               📦 design system publicável (ver README próprio)
+
+O processo de build também gera o arquivo `404.html`, necessário para preservar as rotas do SPA em hospedagens estáticas.
+
+Para executar os testes unitários:
+
+```bash
+npm test
+```
+
+## Estrutura principal
+
+```text
+public/                         imagens, vídeos e arquivos públicos
+scripts/spa-fallback.mjs       gera o fallback 404 do SPA
 src/
-  index.html                  metatags de SEO/social e bootstrap de tema
-  styles.scss                 design tokens, reset e ponte para os tokens --jp-*
+  index.html                    metatags, SEO e bootstrap do tema
+  styles.scss                   reset, tokens e estilos globais
   app/
-    app.component.ts          shell com <router-outlet>
-    app.routes.ts             rotas (ambas com lazy loading)
-    pages/
-      portfolio/              a página principal
-      design-system/          showcase da jp-ui
+    app.routes.ts               configuração das rotas
+    pages/portfolio/             página principal do portfólio
     shared/
-      content.model.ts        contratos de todo o conteúdo do site
-      content.pt.ts           🇧🇷 conteúdo em português
-      content.en.ts           🇺🇸 conteúdo em inglês
-      i18n.service.ts         idioma ativo (signal) + persistência
-      contact-form.component.*  formulário de contato
+      content.model.ts           contratos do conteúdo
+      content.pt.ts              conteúdo em português
+      content.en.ts              conteúdo em inglês
+      i18n.service.ts            idioma ativo e persistência
+      contact-form.component.*   formulário de contato
 ```
 
-> As animações de scroll e os contadores vivem na `jp-ui` (`jpReveal`, `jpCountUp`) — o portfólio consome a própria biblioteca.
+## Atualizando o conteúdo
 
-## ✏️ Como atualizar o conteúdo
+O texto visível do site é centralizado nos arquivos de conteúdo, evitando strings espalhadas pelos templates:
 
-**Todo texto visível vive em `content.pt.ts` e `content.en.ts`** — o template não tem string fixa. Editou um, edite o outro: o TypeScript avisa se faltar algum campo.
-
-| O que mudar | Onde |
-|---|---|
-| Projetos | `projects.items` |
+| Conteúdo | Arquivo ou seção |
+| --- | --- |
+| Hero e apresentação | `hero` em `content.pt.ts` e `content.en.ts` |
+| Sobre | `about` |
 | Experiência profissional | `experience.items` |
-| Etapas do processo | `process.steps` |
-| Habilidades por aba | `skills.groups` |
-| Números da faixa de destaque | `metrics` |
-| Contato / redes sociais | constantes em `app.component.ts` |
-| Botão de download do CV | coloque o PDF em `public/` e mude `cvDisponivel` para `true` |
-| Destino do formulário | `FORMSPREE_ENDPOINT` em `contact-form.component.ts` |
+| Processo de trabalho | `process.steps` |
+| Projetos | `projects.items` e `projects.designSystem` |
+| Habilidades | `skills.groups` |
+| Métricas | `metrics` |
+| Redes e contato | constantes em `portfolio.component.ts` |
+| Currículo | `cvUrl` e `cvDisponivel` em `portfolio.component.ts` |
 
-### Ativando o envio do formulário
+Ao alterar o conteúdo em português, atualize também a versão em inglês para manter os dois idiomas consistentes.
 
-Sem configuração, o formulário abre o cliente de e-mail com a mensagem preenchida — já funciona. Para receber por e-mail sem sair do site:
+## Licença
 
-1. Crie um formulário gratuito em [formspree.io](https://formspree.io)
-2. Substitua `SEU_ID` em `FORMSPREE_ENDPOINT` pelo ID gerado
-
----
+Código do portfólio mantido por João Pedro Bandeira para fins pessoais e profissionais.
 
 © João Pedro Bandeira

@@ -107,8 +107,8 @@ export class PortfolioComponent {
   readonly whatsapp = computed(() => {
     const texto =
       this.lang() === 'pt'
-        ? 'Olá João Pedro! Vi seu portfólio e gostaria de conversar sobre uma oportunidade.'
-        : 'Hi João Pedro! I saw your portfolio and would like to talk about an opportunity.';
+        ? 'Olá João Pedro! Vi seu portfólio e gostaria de conversar sobre um projeto ou colaboração.'
+        : 'Hi João Pedro! I saw your portfolio and would like to talk about a project or collaboration.';
     return `https://wa.me/5528999658399?text=${encodeURIComponent(texto)}`;
   });
 
