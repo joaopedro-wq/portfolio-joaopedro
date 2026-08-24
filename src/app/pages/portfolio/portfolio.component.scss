@@ -411,27 +411,6 @@ main {
   }
 }
 
-.availability {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.4rem 0.9rem;
-  margin-bottom: 1.5rem;
-  background: var(--accent-soft);
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-  border-radius: 999px;
-  color: var(--accent);
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
-}
 
 .hero-lead {
   max-width: 60ch;
@@ -534,23 +513,37 @@ main {
 
 .hero-visual {
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 28px 20px;
 }
 
+/*
+ * Tratamento profissional e discreto: só a foto, cantos bem arredondados,
+ * sombra suave — sem moldura, sem inclinação, sem prop.
+ */
 .avatar-frame {
   position: relative;
-  padding: 8px;
-  border-radius: var(--radius-lg);
-  background: var(--gradient);
-  box-shadow: var(--shadow-lg);
+  animation: avatar-fade-in 560ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: 100ms;
 
   img {
     width: clamp(220px, 26vw, 330px);
     height: clamp(260px, 31vw, 390px);
-    border-radius: calc(var(--radius-lg) - 4px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
     object-fit: cover;
-    border: 5px solid var(--bg);
+    display: block;
   }
+}
+
+@keyframes avatar-fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-frame { animation: none; }
 }
 
 .metrics-strip {
