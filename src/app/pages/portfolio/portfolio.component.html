@@ -392,13 +392,24 @@
         <div class="projects-cover-actions">
           @if (activeProjectPrimary(); as primary) {
             @if (primary.href) {
-              <a [href]="primary.href" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                <i class="fas fa-arrow-up-right-from-square"></i> {{ primary.label }}
+              <a
+                [href]="primary.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+                [attr.aria-label]="primary.label"
+              >
+                <i class="fas fa-arrow-up-right-from-square"></i> <span class="btn-label">{{ primary.label }}</span>
               </a>
             }
           }
-          <button type="button" class="btn btn-ghost" (click)="openProjectDetail()">
-            <i class="fas fa-circle-info"></i> {{ c().projects.detailsCta }}
+          <button
+            type="button"
+            class="btn btn-ghost"
+            (click)="openProjectDetail()"
+            [attr.aria-label]="c().projects.detailsCta"
+          >
+            <i class="fas fa-circle-info"></i> <span class="btn-label">{{ c().projects.detailsCta }}</span>
           </button>
         </div>
       </div>
