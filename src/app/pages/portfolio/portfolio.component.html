@@ -239,121 +239,147 @@
         <p class="section-sub" [innerHTML]="c().projects.sub"></p>
       </header>
 
-      <div class="project-grid">
+    
+      <div class="project-morph-row" bdReveal>
         @for (project of c().projects.items; track project.title; let i = $index) {
           <article
-            class="card project"
-            [class.featured]="project.featured"
-            [class.project-vitality]="project.featured"
-            bdReveal="left"
-            [revealDelay]="(i + 1) * 100"
+            class="card project project-morph"
+            [class.active]="activeProjectIndex() === i"
+            [id]="'project-card-' + i"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="project.title"
+            [attr.aria-expanded]="activeProjectIndex() === i"
+            [attr.aria-controls]="'project-panel-' + i"
+            (click)="setActiveProject(i)"
+            (keydown)="onProjectKeydown($event, c().projects.items.length + 2)"
           >
-            @if (project.images?.length) {
-              <div class="project-media project-gallery" [class.project-gallery--single]="project.images?.length === 1">
-                @for (image of project.images; track image.src; let index = $index) {
-                  <figure [class.project-gallery__main]="index === 0">
-                    <img
-                      [src]="image.src"
-                      [alt]="image.alt"
-                      [attr.loading]="index === 0 ? 'eager' : 'lazy'"
-                      [attr.fetchpriority]="index === 0 ? 'high' : null"
-                      decoding="async"
-                    />
-                  </figure>
-                }
-              </div>
-            }
+            <div class="project-morph__media">
+              <span class="project-morph__icon"><i class="fas fa-star" aria-hidden="true"></i></span>
+              <span class="project-morph__name-hint">{{ project.title }}</span>
+              @if (project.images?.length) {
+                <div class="project-media project-gallery" [class.project-gallery--single]="project.images?.length === 1">
+                  @for (image of project.images; track image.src; let index = $index) {
+                    <figure [class.project-gallery__main]="index === 0">
+                      <img
+                        [src]="image.src"
+                        [alt]="image.alt"
+                        [attr.loading]="index === 0 ? 'eager' : 'lazy'"
+                        [attr.fetchpriority]="index === 0 ? 'high' : null"
+                        decoding="async"
+                      />
+                    </figure>
+                  }
+                </div>
+              }
+            </div>
 
-            <div class="project-body">
-              <div class="project-head">
-                <h3>{{ project.title }}</h3>
+            @if (activeProjectIndex() === i) {
+            <div class="project-morph__detail" [id]="'project-panel-' + i">
+              <div class="project-body">
+                <div class="project-head">
+                  <h3>{{ project.title }}</h3>
+                  @if (project.featured) {
+                    <span class="badge-featured">
+                      <i class="fas fa-star"></i> {{ project.featuredLabel ?? c().projects.featured }}
+                    </span>
+                  }
+                </div>
+                <p class="project-tagline">{{ project.tagline }}</p>
+
+                <ul class="achievements">
+                  @for (h of project.highlights; track h; let hi = $index) {
+                    <li class="cascade-in" [style.--i]="hi"><i class="fas fa-check"></i> {{ h }}</li>
+                  }
+                </ul>
+
+                <div class="chip-row">
+                  @for (t of project.tech; track t; let ti = $index) {
+                    <span class="chip cascade-in" [style.--i]="ti">{{ t }}</span>
+                  }
+                </div>
+
                 @if (project.featured) {
-                  <span class="badge-featured">
-                    <i class="fas fa-star"></i> {{ project.featuredLabel ?? c().projects.featured }}
-                  </span>
+                  <section class="project-rationale" [attr.aria-label]="c().projects.rationaleTitle">
+                    <p class="project-rationale__title">{{ c().projects.rationaleTitle }}</p>
+                    <div class="project-rationale__grid">
+                      <article>
+                        <span>{{ c().projects.rationaleProblem }}</span>
+                        <p>{{ project.problem }}</p>
+                      </article>
+                      <article>
+                        <span>{{ c().projects.rationaleSolution }}</span>
+                        <p>{{ project.solution }}</p>
+                      </article>
+                    </div>
+                  </section>
                 }
-              </div>
-              <p class="project-tagline">{{ project.tagline }}</p>
 
-              <ul class="achievements">
-                @for (h of project.highlights; track h) {
-                  <li><i class="fas fa-check"></i> {{ h }}</li>
+                @if (!project.featured) {
+                  <details class="project-why">
+                    <summary>{{ c().projects.whyExists }}</summary>
+                    <dl class="project-detail">
+                      <dt>{{ c().projects.labelProblem }}</dt>
+                      <dd>{{ project.problem }}</dd>
+                      <dt>{{ c().projects.labelSolution }}</dt>
+                      <dd>{{ project.solution }}</dd>
+                    </dl>
+                  </details>
                 }
-              </ul>
 
-              <div class="chip-row">
-                @for (t of project.tech; track t) {
-                  <span class="chip">{{ t }}</span>
-                }
-              </div>
-
-              @if (project.featured) {
-                <section class="project-rationale" [attr.aria-label]="c().projects.rationaleTitle">
-                  <p class="project-rationale__title">{{ c().projects.rationaleTitle }}</p>
-                  <div class="project-rationale__grid">
-                    <article>
-                      <span>{{ c().projects.rationaleProblem }}</span>
-                      <p>{{ project.problem }}</p>
-                    </article>
-                    <article>
-                      <span>{{ c().projects.rationaleSolution }}</span>
-                      <p>{{ project.solution }}</p>
-                    </article>
-                  </div>
-                </section>
-              }
-
-              @if (!project.featured) {
-                <details class="project-why">
-                  <summary>{{ c().projects.whyExists }}</summary>
-                  <dl class="project-detail">
-                    <dt>{{ c().projects.labelProblem }}</dt>
-                    <dd>{{ project.problem }}</dd>
-                    <dt>{{ c().projects.labelSolution }}</dt>
-                    <dd>{{ project.solution }}</dd>
-                  </dl>
-                </details>
-              }
-
-              <div class="project-links">
-                @if (project.demo) {
-                  <a
-                    [href]="project.demo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn-primary btn-sm project-live-link"
-                  >
-                    <i class="fas fa-arrow-up-right-from-square"></i>
-                    {{ project.liveDemoLabel ?? c().projects.liveDemo }}
-                  </a>
-                }
-                @if (!project.featured && project.github) {
-                  <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                    <i class="fab fa-github"></i> {{ c().projects.code }}
-                  </a>
-                }
-                @if (!project.featured && project.backend) {
-                  <a [href]="project.backend" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                    <i class="fas fa-server"></i> {{ c().projects.backendCode }}
-                  </a>
-                }
-                @if (project.note) {
-                  <p class="project-note"><i class="fas fa-lock"></i> {{ project.note }}</p>
-                }
+                <div class="project-links">
+                  @if (project.demo) {
+                    <a
+                      [href]="project.demo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn btn-primary btn-sm project-live-link"
+                    >
+                      <i class="fas fa-arrow-up-right-from-square"></i>
+                      {{ project.liveDemoLabel ?? c().projects.liveDemo }}
+                    </a>
+                  }
+                  @if (!project.featured && project.github) {
+                    <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                      <i class="fab fa-github"></i> {{ c().projects.code }}
+                    </a>
+                  }
+                  @if (!project.featured && project.backend) {
+                    <a [href]="project.backend" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                      <i class="fas fa-server"></i> {{ c().projects.backendCode }}
+                    </a>
+                  }
+                  @if (project.note) {
+                    <p class="project-note"><i class="fas fa-lock"></i> {{ project.note }}</p>
+                  }
+                </div>
               </div>
             </div>
+            }
           </article>
         }
 
-        <!-- bandeira-ui e o próprio portfólio: duas provas técnicas menores, lado a lado com o mesmo peso visual. -->
-        <div class="project-secondary-grid">
-          @if (c().projects.designSystem; as ds) {
-            <article class="card project project-ds featured" bdReveal="right">
-              <!--
-                A lib é a única coisa do portfólio que pode ser mostrada em vez
-                de descrita: a composição abaixo é feita com as próprias peças
-                (botão, tabela com linha selecionada), não uma captura de tela.
-              -->
+        @if (c().projects.designSystem; as ds) {
+          <article
+            class="card project project-morph"
+            [class.active]="activeProjectIndex() === c().projects.items.length"
+            [id]="'project-card-' + c().projects.items.length"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="ds.name"
+            [attr.aria-expanded]="activeProjectIndex() === c().projects.items.length"
+            [attr.aria-controls]="'project-panel-ds'"
+            (click)="setActiveProject(c().projects.items.length)"
+            (keydown)="onProjectKeydown($event, c().projects.items.length + 2)"
+          >
+            <!--
+              A lib é a única coisa do portfólio que pode ser mostrada em vez
+              de descrita: a composição abaixo é feita com as próprias peças
+              (botão, tabela com linha selecionada), não uma captura de tela.
+            -->
+            <div class="project-morph__media">
+              <span class="project-morph__icon"><i class="fas fa-swatchbook" aria-hidden="true"></i></span>
+              <span class="project-morph__name-hint">{{ ds.name }}</span>
               <div class="project-media" aria-hidden="true">
                 <div class="ds-mock">
                   <div class="ds-mock__bar">
@@ -368,7 +394,10 @@
                   }
                 </div>
               </div>
+            </div>
 
+            @if (activeProjectIndex() === c().projects.items.length) {
+            <div class="project-morph__detail" id="project-panel-ds">
               <div class="project-body">
                 <div class="project-head">
                   <h3>{{ ds.name }}</h3>
@@ -379,26 +408,16 @@
                 <p class="project-tagline">{{ ds.tagline }}</p>
 
                 <ul class="achievements">
-                  @for (h of ds.highlights; track h) {
-                    <li><i class="fas fa-check"></i> {{ h }}</li>
+                  @for (h of ds.highlights; track h; let hi = $index) {
+                    <li class="cascade-in" [style.--i]="hi"><i class="fas fa-check"></i> {{ h }}</li>
                   }
                 </ul>
 
                 <div class="chip-row">
-                  @for (t of ds.chips; track t) {
-                    <span class="chip">{{ t }}</span>
+                  @for (t of ds.chips; track t; let ti = $index) {
+                    <span class="chip cascade-in" [style.--i]="ti">{{ t }}</span>
                   }
                 </div>
-
-                <details class="project-why">
-                  <summary>{{ c().projects.whyExists }}</summary>
-                  <dl class="project-detail">
-                    <dt>{{ c().projects.labelProblem }}</dt>
-                    <dd>{{ ds.problem }}</dd>
-                    <dt>{{ c().projects.labelSolution }}</dt>
-                    <dd>{{ ds.solution }}</dd>
-                  </dl>
-                </details>
 
                 <div class="project-links">
                   <a [href]="ds.docsUrl" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
@@ -412,13 +431,33 @@
                   </a>
                 </div>
               </div>
-            </article>
-          }
+            </div>
+            }
+          </article>
+        }
 
-          <article class="card project project-invite" bdReveal="left">
+        <article
+          class="card project project-morph"
+          [class.active]="activeProjectIndex() === c().projects.items.length + 1"
+          [id]="'project-card-' + (c().projects.items.length + 1)"
+          tabindex="0"
+          role="button"
+          [attr.aria-label]="c().projects.ctaCard.title"
+          [attr.aria-expanded]="activeProjectIndex() === c().projects.items.length + 1"
+          [attr.aria-controls]="'project-panel-invite'"
+          (click)="setActiveProject(c().projects.items.length + 1)"
+          (keydown)="onProjectKeydown($event, c().projects.items.length + 2)"
+        >
+          <div class="project-morph__media">
+            <span class="project-morph__icon"><i class="fas fa-window-maximize" aria-hidden="true"></i></span>
+            <span class="project-morph__name-hint">{{ c().projects.ctaCard.title }}</span>
             <div class="project-media project-invite__media" aria-hidden="true">
               <i class="fas fa-window-maximize"></i>
             </div>
+          </div>
+
+          @if (activeProjectIndex() === c().projects.items.length + 1) {
+          <div class="project-morph__detail" id="project-panel-invite">
             <div class="project-body">
               <div class="project-head">
                 <h3>{{ c().projects.ctaCard.title }}</h3>
@@ -426,9 +465,9 @@
               <p class="project-tagline">{{ c().projects.ctaCard.text }}</p>
 
               <div class="chip-row">
-                <span class="chip">Angular 20</span>
-                <span class="chip">PT / EN</span>
-                <span class="chip">SCSS</span>
+                <span class="chip cascade-in" style="--i:0">Angular 20</span>
+                <span class="chip cascade-in" style="--i:1">PT / EN</span>
+                <span class="chip cascade-in" style="--i:2">SCSS</span>
               </div>
 
               <div class="project-links">
@@ -437,8 +476,9 @@
                 </a>
               </div>
             </div>
-          </article>
-        </div>
+          </div>
+          }
+        </article>
       </div>
     </div>
   </section>
@@ -453,32 +493,60 @@
       </header>
 
       <div class="skills-deck" bdReveal>
-        <div
-          class="skills-deck-stage"
-          #skillStage
-          role="tablist"
-          [attr.aria-label]="c().skills.tablistLabel"
-          (mousemove)="onSkillDeckPointerMove($event, skillStage)"
-          (mouseleave)="onSkillDeckPointerLeave()"
-        >
+        <div class="skills-deck-controls">
+          <button
+            type="button"
+            class="skills-deck-arrow"
+            (click)="prevSkill()"
+            [attr.aria-label]="c().skills.prevLabel"
+          >
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <div class="skills-deck-stage" role="tablist" [attr.aria-label]="c().skills.tablistLabel">
+            @for (group of c().skills.groups; track group.id; let i = $index) {
+              <button
+                type="button"
+                role="tab"
+                class="skills-card"
+                [id]="'skill-card-' + i"
+                [class.active]="activeSkillIndex() === i"
+                [attr.aria-selected]="activeSkillIndex() === i"
+                [attr.aria-controls]="'skill-panel-' + group.id"
+                [attr.tabindex]="activeSkillIndex() === i ? 0 : -1"
+                [style]="skillCardStyle(i)"
+                [style.--group-color]="skillGroupColor(i)"
+                (click)="setActiveSkill(i)"
+                (keydown)="onSkillTabKeydown($event, c().skills.groups.length)"
+              >
+                <span class="skills-card__icon"><i [class]="group.icon" aria-hidden="true"></i></span>
+                <strong>{{ group.label }}</strong>
+                <span class="skills-card__count">{{ group.items.length }} itens</span>
+              </button>
+            }
+          </div>
+
+          <button
+            type="button"
+            class="skills-deck-arrow"
+            (click)="nextSkill()"
+            [attr.aria-label]="c().skills.nextLabel"
+          >
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="skills-deck-dots">
           @for (group of c().skills.groups; track group.id; let i = $index) {
             <button
               type="button"
-              role="tab"
-              class="skills-card"
-              [id]="'skill-card-' + i"
+              class="skills-deck-dot"
               [class.active]="activeSkillIndex() === i"
-              [attr.aria-selected]="activeSkillIndex() === i"
-              [attr.aria-controls]="'skill-panel-' + group.id"
-              [attr.tabindex]="activeSkillIndex() === i ? 0 : -1"
-              [style]="skillCardStyle(i)"
+              [style.--group-color]="skillGroupColor(i)"
+              [attr.aria-label]="group.label"
+              [attr.aria-current]="activeSkillIndex() === i"
               (click)="setActiveSkill(i)"
-              (keydown)="onSkillTabKeydown($event, c().skills.groups.length)"
-            >
-              <span class="skills-card__icon"><i [class]="group.icon" aria-hidden="true"></i></span>
-              <strong>{{ group.label }}</strong>
-              <span class="skills-card__count">{{ group.items.length }} itens</span>
-            </button>
+            ></button>
           }
         </div>
 
@@ -489,6 +557,7 @@
               role="tabpanel"
               [id]="'skill-panel-' + group.id"
               [attr.aria-labelledby]="'skill-card-' + i"
+              [style.--group-color]="skillGroupColor(i)"
             >
               <h3><i [class]="group.icon" aria-hidden="true"></i>{{ group.label }}</h3>
               <p>{{ group.summary }}</p>

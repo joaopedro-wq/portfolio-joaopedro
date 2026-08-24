@@ -264,6 +264,8 @@ export const CONTENT_EN: SiteContent = {
     title: 'Technology in the context where it creates value',
     sub: 'The practices I connect to build clear, functional products that are easier to evolve.',
     tablistLabel: 'Domains',
+    prevLabel: 'Previous skill',
+    nextLabel: 'Next skill',
     groups: [
       {
         id: 'frontend',

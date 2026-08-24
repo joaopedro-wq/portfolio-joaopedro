@@ -108,6 +108,27 @@ export class PortfolioComponent {
   ] as const;
 
   /* ---------------------------------------------------------------- */
+  /* Projetos — faixas que se expandem uma de cada vez (morph)        */
+  /* ---------------------------------------------------------------- */
+
+  readonly activeProjectIndex = signal(0);
+
+  setActiveProject(index: number) {
+    this.activeProjectIndex.set(index);
+  }
+
+  /** Setas do teclado navegam entre as faixas de projeto. */
+  onProjectKeydown(event: KeyboardEvent, total: number) {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const delta = event.key === 'ArrowRight' ? 1 : -1;
+    const next = (this.activeProjectIndex() + delta + total) % total;
+    this.activeProjectIndex.set(next);
+    const card = this.document.getElementById(`project-card-${next}`);
+    card?.focus();
+  }
+
+  /* ---------------------------------------------------------------- */
   /* Navegação                                                        */
   /* ---------------------------------------------------------------- */
 
@@ -214,8 +235,18 @@ export class PortfolioComponent {
 
   readonly activeSkillIndex = signal(0);
 
-  /** Posição horizontal do cursor sobre o leque (0–1); só dá um leve "puxão" magnético. */
-  private readonly skillPointerRatio = signal(0.5);
+  /** Uma cor de destaque por frente de trabalho — dá identidade visual a cada carta. */
+  private readonly skillGroupColors = [
+    '#6d8cff', // Frontend — indigo (marca)
+    '#a78bfa', // Design & UX — violeta
+    '#4fd8c4', // Backend — mint (marca)
+    '#f2b84f', // Integrações — âmbar
+    '#f472b6', // Testes & Ferramentas — rosa
+  ] as const;
+
+  skillGroupColor(index: number): string {
+    return this.skillGroupColors[index % this.skillGroupColors.length];
+  }
 
   /** Em telas estreitas o leque encolhe o espaçamento para não vazar da viewport. */
   private readonly skillDeckCompact = signal(
@@ -231,6 +262,16 @@ export class PortfolioComponent {
     this.activeSkillIndex.set(index);
   }
 
+  nextSkill() {
+    const total = this.c().skills.groups.length;
+    this.activeSkillIndex.set((this.activeSkillIndex() + 1) % total);
+  }
+
+  prevSkill() {
+    const total = this.c().skills.groups.length;
+    this.activeSkillIndex.set((this.activeSkillIndex() - 1 + total) % total);
+  }
+
   /** Setas do teclado navegam entre as cartas do leque. */
   onSkillTabKeydown(event: KeyboardEvent, total: number) {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
@@ -242,19 +283,12 @@ export class PortfolioComponent {
     card?.focus();
   }
 
-  onSkillDeckPointerMove(event: MouseEvent, stage: HTMLElement) {
-    const rect = stage.getBoundingClientRect();
-    this.skillPointerRatio.set((event.clientX - rect.left) / rect.width);
-  }
-
-  onSkillDeckPointerLeave() {
-    this.skillPointerRatio.set(0.5);
-  }
-
   /**
    * Cada carta fica sempre visível em leque; a ativa fica sempre centralizada
    * (a distância é medida pelo caminho mais curto no círculo de grupos, então
    * as outras cartas "dançam" para se reorganizar em vez de empilhar de lado).
+   * Posição pura por índice — nada reage ao cursor, então clicar nunca "quebra"
+   * o leque, mesmo com o mouse parado em cima da carta.
    */
   skillCardStyle(index: number): string {
     const total = this.c().skills.groups.length;
@@ -263,8 +297,7 @@ export class PortfolioComponent {
     if (offset < -total / 2) offset += total;
 
     const factor = this.skillDeckCompact() ? 0.6 : 1;
-    const skew = (this.skillPointerRatio() - 0.5) * 10 * (offset === 0 ? 0.3 : 1);
-    const x = (offset * 56 + skew) * factor;
+    const x = offset * 56 * factor;
     const y = Math.abs(offset) * 10 * factor;
     const rot = offset * 6;
     const scale = offset === 0 ? 1 : 1 - Math.min(Math.abs(offset), 3) * 0.045;

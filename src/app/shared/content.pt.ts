@@ -264,6 +264,8 @@ export const CONTENT_PT: SiteContent = {
     title: 'Tecnologia no contexto em que gera valor',
     sub: 'Frentes de trabalho que conecto para construir produtos claros, funcionais e mais simples de evoluir.',
     tablistLabel: 'Domínios de atuação',
+    prevLabel: 'Competência anterior',
+    nextLabel: 'Próxima competência',
     groups: [
       {
         id: 'frontend',

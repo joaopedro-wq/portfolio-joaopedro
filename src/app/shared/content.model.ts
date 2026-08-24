@@ -179,6 +179,8 @@ export interface SiteContent {
     title: string;
     sub: string;
     tablistLabel: string;
+    prevLabel: string;
+    nextLabel: string;
     groups: SkillGroup[];
   };
 
