@@ -201,6 +201,9 @@ export const CONTENT_EN: SiteContent = {
     backendCode: 'Backend',
     liveDemo: 'Live demo',
     playVideo: 'Watch the demo',
+    prevLabel: 'Previous project',
+    nextLabel: 'Next project',
+    detailsCta: 'See more about this project',
     items: [
       {
         title: 'Vitality',
@@ -227,7 +230,7 @@ export const CONTENT_EN: SiteContent = {
         github: 'https://github.com/joaopedro-wq/vitality-front',
         backend: 'https://github.com/joaopedro-wq/vitality-Back',
         demo: 'https://vitality-front.vercel.app/',
-        liveDemoLabel: 'Create my plan',
+        liveDemoLabel: 'Access Vitality',
         featuredLabel: 'Primary case · AI meal plan',
         featured: true,
       },

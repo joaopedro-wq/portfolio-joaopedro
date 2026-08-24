@@ -107,9 +107,7 @@ export class PortfolioComponent {
     { a: 38, b: 20, on: false },
   ] as const;
 
-  /* ---------------------------------------------------------------- */
-  /* Projetos — faixas que se expandem uma de cada vez (morph)        */
-  /* ---------------------------------------------------------------- */
+
 
   readonly activeProjectIndex = signal(0);
 
@@ -117,7 +115,17 @@ export class PortfolioComponent {
     this.activeProjectIndex.set(index);
   }
 
-  /** Setas do teclado navegam entre as faixas de projeto. */
+  nextProject() {
+    const total = this.c().projects.items.length + 2;
+    this.activeProjectIndex.set((this.activeProjectIndex() + 1) % total);
+  }
+
+  prevProject() {
+    const total = this.c().projects.items.length + 2;
+    this.activeProjectIndex.set((this.activeProjectIndex() - 1 + total) % total);
+  }
+
+ 
   onProjectKeydown(event: KeyboardEvent, total: number) {
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
     event.preventDefault();
@@ -126,6 +134,49 @@ export class PortfolioComponent {
     this.activeProjectIndex.set(next);
     const card = this.document.getElementById(`project-card-${next}`);
     card?.focus();
+  }
+
+ 
+  projectPosition(index: number, total: number): 'center' | 'left' | 'right' | 'hidden' {
+    const diff = (index - this.activeProjectIndex() + total) % total;
+    if (diff === 0) return 'center';
+    if (diff === 1) return 'right';
+    if (diff === total - 1) return 'left';
+    return 'hidden';
+  }
+
+ 
+  readonly activeProjectPrimary = computed(() => {
+    const idx = this.activeProjectIndex();
+    const projects = this.c().projects;
+    const items = projects.items;
+
+    if (idx < items.length) {
+      const p = items[idx];
+      return { href: p.demo, label: p.liveDemoLabel ?? projects.liveDemo };
+    }
+    if (idx === items.length) {
+      const ds = projects.designSystem;
+      return { href: ds.docsUrl, label: ds.cta };
+    }
+    return { href: this.github, label: projects.ctaCard.button };
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Modal "ver mais" do card ativo — detalha problema, solução,      */
+  /* destaques e links sem inflar o carrossel com um painel fixo.     */
+  /* ---------------------------------------------------------------- */
+
+  readonly showProjectDetail = signal(false);
+
+  openProjectDetail() {
+    this.showProjectDetail.set(true);
+    this.document.body.style.overflow = 'hidden';
+  }
+
+  closeProjectDetail() {
+    this.showProjectDetail.set(false);
+    this.document.body.style.overflow = '';
   }
 
   /* ---------------------------------------------------------------- */
@@ -208,6 +259,8 @@ export class PortfolioComponent {
   onEscape() {
     if (this.showModalContato()) {
       this.fecharModalContato();
+    } else if (this.showProjectDetail()) {
+      this.closeProjectDetail();
     } else if (this.menuOpen()) {
       this.closeMenu();
     }

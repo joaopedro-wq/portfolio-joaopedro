@@ -145,18 +145,17 @@ export interface SiteContent {
     rationaleTitle: string;
     rationaleProblem: string;
     rationaleSolution: string;
-    /** Rótulo do bloco recolhível que abre Problema e Solução. */
     whyExists: string;
     featured: string;
     code: string;
     backendCode: string;
     liveDemo: string;
     playVideo: string;
+    prevLabel: string;
+    nextLabel: string;
+    detailsCta: string;
     items: Project[];
-    /**
-     * Card da bandeira-ui: o projeto de maior peso técnico, exibido antes dos
-     * demais. Os três links saem para fora — a documentação é um site próprio.
-     */
+    
     designSystem: {
       name: string;
       tagline: string;
