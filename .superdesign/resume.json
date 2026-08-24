@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/": {
+      "targetKind": "existing-ui",
+      "projectId": "3ea31493-5bf0-4de5-9670-dbaa89ff42d4",
+      "baselineDraftId": "7d8bb131-4c02-462e-ab8d-0ab00fabfaa9",
+      "activeDraftId": "2cf8a310-83f6-4055-a5fa-6979667433ac",
+      "designSystemPath": ".superdesign/design-system.md",
+      "referenceIds": [
+        "public-logo_sistema.png",
+        "ce02c737-1874-41af-bc8b-bf8b0247d521",
+        "93d8959f-5692-4c06-aff5-ba7d71b61255",
+        "fd011e82-3d3a-4c32-8a91-fe0370ba1142"
+      ],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "public-logo_sistema.png",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/3ea31493-5bf0-4de5-9670-dbaa89ff42d4/brand-assets/public-logo_sistema.png/logo_sistema.png",
+          "sourcePath": "public/logo_sistema.png"
+        }
+      },
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "src/app/pages/portfolio/portfolio.component.ts",
+        "src/app/pages/portfolio/portfolio.component.html",
+        "src/app/pages/portfolio/portfolio.component.scss",
+        "src/app/shared/content.pt.ts",
+        "src/app/shared/content.en.ts",
+        "src/styles.scss:1:219"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "ecbf210e0de3990a3f842cd36449a7114251f69eba12d7be2d1107a6bb2a1477",
+        "src/app/pages/portfolio/portfolio.component.ts": "6121c44602085fa6f0e8c733a4b268e6a6baf01c951c064670bc38d883b470fc",
+        "src/app/pages/portfolio/portfolio.component.html": "75c375bded5ec7ebca3f627947ab2e8aa45a85e4473aa2ff585de54d3012ca06",
+        "src/app/pages/portfolio/portfolio.component.scss": "15c2391857ef7da70ad7e052dfd1dca64201a61d8289cc583112bbbcf7161e34",
+        "src/app/shared/content.pt.ts": "a944b5d9aa4d81ec15080c75b90f7509caf47ec7234e3fbfa7fa031e5176cbab",
+        "src/app/shared/content.en.ts": "45896de945c353105eec54834e686964f5b3ff704afeb0a4d4213e5e49b226ae",
+        "src/styles.scss": "f05199703551fe5c4ee69d7dd60a56926a617c1ff14822ab16bd91661485d968"
+      },
+      "components": [],
+      "drafts": {
+        "7d8bb131-4c02-462e-ab8d-0ab00fabfaa9": {
+          "title": "Portfólio João Pedro — reprodução-base",
+          "visualDirection": "reprodução fiel dark-first com Inter, indigo e mint",
+          "currentVersion": 1
+        },
+        "2cf8a310-83f6-4055-a5fa-6979667433ac": {
+          "title": "João Pedro — Product-led portfolio",
+          "visualDirection": "editorial product-led: cases before credentials, Inter, navy, indigo and mint",
+          "parentDraftId": "7d8bb131-4c02-462e-ab8d-0ab00fabfaa9",
+          "currentVersion": 4
+        }
+      },
+      "updatedAt": "2026-08-24T12:15:48.2569363Z"
+    }
+  }
+}

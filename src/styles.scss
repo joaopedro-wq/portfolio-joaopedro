@@ -217,3 +217,1890 @@ a {
 .toast-error {
   border-left: 3px solid #f87171;
 }
+
+/* ========================================================================
+   Product-led editorial redesign
+   ======================================================================== */
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+#inicio { order: 1; }
+#sobre { order: 2; }
+#experiencia { order: 3; }
+#processo { order: 4; }
+#projetos { order: 5; }
+#habilidades { order: 6; }
+#contato { order: 7; }
+
+.site-header {
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--bg) 48%, transparent);
+}
+
+.nav-links {
+  gap: 0.1rem;
+
+  a {
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+}
+
+.section {
+  padding: clamp(4.75rem, 9vw, 7.5rem) 0;
+}
+
+.section-head {
+  margin-bottom: clamp(2.25rem, 5vw, 4rem);
+
+  h2 {
+    max-width: 16ch;
+    margin-inline: auto;
+    font-size: clamp(1.9rem, 3.35vw, 2.9rem);
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+  }
+}
+
+.section-sub {
+  max-width: 58ch;
+  font-size: 1.03rem;
+  line-height: 1.7;
+}
+
+.section-head--story {
+  max-width: none;
+  margin-inline: 0;
+  text-align: left;
+
+  h2 {
+    max-width: 22ch;
+    margin-inline: 0;
+    font-size: clamp(2.05rem, 3.7vw, 3.25rem);
+  }
+
+  .section-sub {
+    max-width: 68ch;
+    margin-inline: 0;
+  }
+}
+
+.section-head--process,
+.section-head--projects {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  column-gap: clamp(2rem, 7vw, 7rem);
+  align-items: end;
+
+  .eyebrow { grid-column: 1 / -1; }
+  h2 { margin-bottom: 0; }
+  .section-sub { margin-bottom: 0.25rem; }
+}
+
+.section-head--skills h2 { max-width: 18ch; }
+
+.hero {
+  padding: clamp(4.5rem, 9vw, 7.25rem) 0 0;
+  border-bottom: 1px solid var(--border);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    content: '';
+    opacity: 0.46;
+    background-image: linear-gradient(color-mix(in srgb, var(--primary) 9%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--primary) 9%, transparent) 1px, transparent 1px);
+    background-size: 30px 30px;
+    mask-image: linear-gradient(to bottom, #000, transparent 82%);
+  }
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(250px, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.hero-content h1 {
+  max-width: 13ch;
+  font-size: clamp(2.55rem, 4.9vw, 4.45rem);
+  letter-spacing: -0.056em;
+  line-height: 1.02;
+}
+
+.hero-lead {
+  max-width: 58ch;
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+  line-height: 1.75;
+}
+
+.availability {
+  padding: 0.45rem 0.8rem;
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
+  font-size: 0.76rem;
+}
+
+.pulse-dot {
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.hero-actions {
+  gap: 0.75rem;
+}
+
+.hero-social {
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
+
+  > a {
+    width: auto;
+    height: auto;
+    padding: 0.2rem 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+
+    &::after {
+      margin-left: 0.4rem;
+      content: attr(title);
+      font-family: inherit;
+      font-size: 0.82rem;
+    }
+
+    &:hover {
+      background: transparent;
+      color: var(--fg);
+      transform: none;
+    }
+  }
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 0;
+}
+
+.avatar-frame {
+  width: min(100%, 305px);
+  margin: 0;
+  padding: 7px;
+  border-radius: calc(var(--radius-lg) + 0.35rem);
+  transform: none;
+
+  img {
+    width: 100%;
+    height: clamp(330px, 31vw, 395px);
+    border: 0;
+    border-radius: var(--radius-lg);
+  }
+}
+
+.metrics-strip {
+  gap: 0;
+  margin-top: clamp(3.5rem, 8vw, 6.25rem);
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.metric {
+  min-height: 120px;
+  padding: 1.25rem;
+  text-align: left;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+
+  &:last-child { border-right: 0; }
+}
+
+.metric-value { font-size: clamp(1.55rem, 3vw, 2.2rem); }
+.metric-label { margin-top: 0.25rem; font-size: 0.82rem; }
+.metric-detail { max-width: 24ch; margin-top: 0.3rem; font-size: 0.7rem; line-height: 1.4; }
+
+.section-alt {
+  background: var(--bg-elevated);
+  border-block: 1px solid var(--border);
+}
+
+.about-grid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(270px, 0.92fr);
+  gap: clamp(1rem, 3vw, 2.4rem);
+}
+
+.about-text {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  background: transparent;
+  border-left: 2px solid var(--primary);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: none;
+
+  p { max-width: 63ch; font-size: 1.04rem; line-height: 1.78; }
+}
+
+.about-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.mini-card {
+  min-height: 170px;
+  padding: 1.2rem;
+  background: var(--surface);
+
+  &:hover { transform: translateY(-3px); }
+}
+
+.project-grid {
+  gap: 1.5rem;
+}
+
+.project {
+  position: relative;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: calc(var(--radius-lg) + 0.15rem);
+  transition: transform 0.38s var(--bd-ease), border-color 0.38s var(--bd-ease), box-shadow 0.38s var(--bd-ease);
+
+  &::before {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 2px;
+    content: '';
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.48s var(--bd-ease);
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+
+    &::before { transform: scaleX(1); }
+    .project-media img { transform: scale(1.035); }
+    .badge-featured { background: var(--accent); color: var(--bg); }
+  }
+}
+
+.project-vitality {
+  grid-template-columns: minmax(300px, 1.04fr) minmax(0, 0.96fr);
+  min-height: 520px;
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+
+  .project-media { min-height: 100%; }
+  .project-body { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.75rem, 4.5vw, 3.35rem); }
+  .project-head h3 { font-size: clamp(2rem, 3.6vw, 3rem); letter-spacing: -0.045em; }
+  .project-tagline { max-width: 32ch; font-size: 1.14rem; }
+  .project-links { margin-top: 1.5rem; }
+}
+
+.project-media {
+  min-height: 360px;
+  border-right: 1px solid var(--border);
+}
+
+.project-gallery {
+  display: block;
+  padding: 0.65rem;
+  background: var(--bg-elevated);
+
+  figure, .project-gallery__main { height: 100%; }
+  img {
+    object-position: left top;
+    transition: transform 0.65s var(--bd-ease);
+  }
+}
+
+.project-rationale {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+}
+
+.project-rationale__grid {
+  gap: 0.75rem;
+
+  article {
+    min-height: 125px;
+    padding: 1rem;
+    background: var(--bg-elevated);
+  }
+}
+
+.project-ds {
+  grid-template-columns: 1fr;
+  background: var(--bg-elevated);
+
+  /* Painel top compacto em vez de coluna esticada: evita espaço vazio
+     quando o mock (curto) divide altura com o texto (mais longo). */
+  .project-media { min-height: 0; height: 190px; border-right: 0; border-bottom: 1px solid var(--border); }
+  .project-body { padding: clamp(1.4rem, 3vw, 2.1rem); }
+}
+
+.project-ds:hover {
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--border));
+
+  .ds-mock { transform: translateY(-4px) scale(1.01); }
+}
+
+.ds-mock {
+  transition: transform 0.45s var(--bd-ease);
+}
+
+.skill-chips {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.skill-chips button {
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.78rem 0.9rem;
+  border-color: transparent;
+  font-size: 0.86rem;
+  text-align: left;
+
+  &.active {
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+}
+
+.skills-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.34fr) minmax(0, 0.66fr);
+  gap: 0;
+  max-width: 1040px;
+  overflow: hidden;
+  margin-inline: auto;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.skill-panel {
+  min-height: 260px;
+  margin: 0;
+  padding: clamp(1.75rem, 4vw, 2.7rem);
+  background: var(--surface);
+  border: 0;
+  border-radius: 0;
+}
+
+.skill-summary { max-width: 48ch; font-size: clamp(1.08rem, 2vw, 1.35rem); line-height: 1.55; }
+.skill-list { justify-content: flex-start; margin-top: 2rem; }
+
+.process-grid {
+  gap: 0;
+  overflow: hidden;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.process-step {
+  min-height: 235px;
+  padding: 1.6rem;
+  background: var(--surface);
+  border-radius: 0;
+
+  &:hover { background: var(--surface-hover); }
+}
+
+.timeline {
+  max-width: 820px;
+}
+
+.timeline-card {
+  padding: clamp(1.35rem, 3vw, 2rem);
+  box-shadow: none;
+  transition: transform 0.28s var(--bd-ease), border-color 0.28s var(--bd-ease), background 0.28s var(--bd-ease);
+
+  &:hover {
+    background: var(--surface-hover);
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+    transform: translateX(4px);
+  }
+}
+
+.achievements { gap: 0.55rem; }
+
+.contact-card {
+  padding: clamp(1.5rem, 5vw, 4rem);
+  text-align: left;
+  border-radius: calc(var(--radius-lg) + 0.15rem);
+
+  > p { max-width: 60ch; margin-inline: 0; }
+}
+
+.contact-layout {
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+  margin-top: 2rem;
+}
+
+.contact-aside {
+  align-items: stretch;
+
+  .btn { justify-content: flex-start; }
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .about-grid,
+  .project,
+  .project-ds,
+  .project-secondary-grid,
+  .contact-layout { grid-template-columns: 1fr; }
+
+  .hero-visual { justify-content: center; max-width: 520px; margin-inline: auto; }
+  .avatar-frame { margin-inline: auto; }
+  .section-head--process,
+  .section-head--projects { grid-template-columns: 1fr; gap: 1rem; }
+  .section-head--process .eyebrow,
+  .section-head--projects .eyebrow { grid-column: auto; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .skill-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0.4rem; }
+  .skill-chips button { justify-content: center; text-align: center; }
+  .project-media { min-height: 300px; border-right: 0; border-bottom: 1px solid var(--border); }
+  .metric:nth-child(2) { border-right: 0; }
+  .metric:nth-child(-n + 2) { border-bottom: 1px solid var(--border); }
+}
+
+@media (max-width: 640px) {
+  .hero { padding-top: 3.25rem; }
+  .hero-content h1 { max-width: 12ch; font-size: clamp(2.45rem, 11vw, 3.25rem); }
+  .hero-social { gap: 0.9rem; }
+  .hero-visual { min-height: 0; }
+  .avatar-frame { width: min(74vw, 290px); }
+  .avatar-frame img { height: 340px; }
+  .metrics-strip { grid-template-columns: 1fr 1fr; }
+  .metric { min-height: 108px; }
+  .metric:nth-child(2) { border-right: 0; }
+  .metric:nth-child(3) { border-right: 1px solid var(--border); }
+  .project-vitality .project-body { padding: 1.35rem; }
+  .project:hover { transform: none; }
+  .section-head--story h2 { max-width: 18ch; }
+  .skill-chips { grid-template-columns: 1fr; }
+  .project-rationale__grid,
+  .about-cards { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { min-height: auto; }
+  .contact-aside { padding-top: 1.5rem; border-top: 1px solid var(--border); }
+}
+
+/* --------------------------------------------------------------------------
+   Refinamento editorial — sistema único de leitura das seções
+   -------------------------------------------------------------------------- */
+
+/* Um cabeçalho, uma escala: diferenças de seção passam a ser de conteúdo,
+   não de tipografia ou alinhamento. */
+.section-head,
+.section-head--story,
+.section-head--process,
+.section-head--projects,
+.section-head--skills {
+  display: block;
+  max-width: 760px;
+  margin: 0 0 clamp(2.25rem, 4.5vw, 3.5rem);
+  text-align: left;
+
+  .eyebrow {
+    display: inline-flex;
+    margin-bottom: 0.8rem;
+  }
+
+  h2 {
+    max-width: 23ch;
+    margin: 0 0 0.85rem;
+    font-size: clamp(2.05rem, 3.3vw, 3.1rem);
+    font-weight: 720;
+    letter-spacing: -0.045em;
+    line-height: 1.06;
+  }
+
+  .section-sub {
+    max-width: 62ch;
+    margin: 0;
+    font-size: clamp(1rem, 1.35vw, 1.1rem);
+    line-height: 1.68;
+  }
+}
+
+/* Links de contato legíveis. */
+.hero-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.65rem;
+  }
+
+  &__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    min-height: 34px;
+    padding: 0.35rem 0.45rem;
+    border-radius: var(--radius-sm);
+    color: var(--fg-muted);
+    font-size: 0.82rem;
+    font-weight: 650;
+    text-decoration: none;
+    transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+
+    &::after { content: none; }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--primary-soft);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+  }
+
+  &__links i { font-size: 1rem; }
+}
+
+/* Processo: quatro estações conectadas, sem o ruído do numeral gigante. */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  list-style: none;
+}
+
+.process-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 272px;
+  padding: 1.35rem 1.35rem 1.5rem;
+  overflow: visible;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 240ms ease, background-color 240ms ease;
+
+  &:not(:last-child)::after {
+    position: absolute;
+    z-index: 1;
+    top: 2.45rem;
+    left: calc(100% + 1px);
+    width: calc(0.9rem - 2px);
+    height: 1px;
+    background: var(--border-strong);
+    content: '';
+  }
+
+  &:hover {
+    background: var(--surface-hover);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+  }
+
+  .process-step__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.35rem;
+  }
+
+  .step-number {
+    position: static;
+    color: var(--primary);
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    opacity: 1;
+  }
+
+  .process-step__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-soft);
+    border: 1px solid color-mix(in srgb, var(--primary) 24%, transparent);
+    border-radius: 50%;
+    color: var(--primary);
+    font-size: 0.95rem;
+  }
+
+  > h3 {
+    margin: 0 0 0.6rem;
+    color: var(--fg);
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+  }
+
+  > p {
+    margin: 0;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+}
+
+/*
+ * Competências: baralho em leque, sempre com as cinco cartas visíveis — a
+ * pessoa não precisa passar o mouse por cima pra descobrir que dá pra trocar.
+ * Só o clique/toque muda a carta ativa; o cursor apenas dá um puxão sutil.
+ */
+.skills-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.skills-deck-stage {
+  --skills-spring: cubic-bezier(0.22, 1.85, 0.42, 1);
+  position: relative;
+  height: 236px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.skills-card {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 160px;
+  height: 202px;
+  margin-left: -80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1.25rem 0.9rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 620ms var(--skills-spring), box-shadow 320ms ease, border-color 320ms ease;
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-soft);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-size: 1.05rem;
+    transition: background 240ms ease, color 240ms ease;
+  }
+
+  strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  &__count {
+    color: var(--fg-subtle);
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    font-size: 0.72rem;
+  }
+
+  &:hover { box-shadow: var(--shadow-md); }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+
+    .skills-card__icon {
+      background: var(--accent);
+      color: var(--bg);
+    }
+  }
+}
+
+.skills-deck-panel {
+  padding: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  animation: skills-panel-in 620ms var(--bd-ease) both;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 0.5rem;
+    color: var(--fg);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+
+    i { color: var(--accent); font-size: 1rem; }
+  }
+
+  > p {
+    margin: 0;
+    max-width: 56ch;
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+}
+
+.skills-deck-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.36rem 0.85rem;
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--fg-muted);
+    font-size: 0.79rem;
+    font-weight: 600;
+    animation: skills-badge-in 680ms var(--bd-ease) backwards;
+    animation-delay: calc(150ms + var(--i, 0) * 95ms);
+  }
+}
+
+@keyframes skills-panel-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes skills-badge-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 920px) {
+  .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-step:not(:last-child)::after { display: none; }
+}
+
+@media (max-width: 640px) {
+  .section-head,
+  .section-head--story,
+  .section-head--process,
+  .section-head--projects,
+  .section-head--skills {
+    h2 { max-width: 18ch; font-size: clamp(1.95rem, 9vw, 2.55rem); }
+  }
+
+  .hero-social {
+    align-items: flex-start;
+    flex-direction: column;
+
+    &__links { gap: 0.25rem 0.45rem; }
+    &__links a { padding-inline: 0.35rem; }
+  }
+
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { min-height: 0; }
+  .skills-deck-stage { height: 172px; }
+  .skills-card { width: 122px; height: 154px; margin-left: -61px; padding: 0.9rem 0.65rem; }
+  .skills-card__icon { width: 32px; height: 32px; }
+  .skills-card strong { font-size: 0.82rem; }
+  .skills-deck-panel { padding: 1.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-card { transition: none; }
+  .skills-deck-panel,
+  .skills-deck-badges li { animation: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Processo — "Como eu trabalho"
+   -------------------------------------------------------------------------- */
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.85rem;
+  list-style: none;
+  counter-reset: none;
+}
+
+.process-step {
+  position: relative;
+  overflow: hidden;
+  padding: 1.45rem;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Número gigante ao fundo: dá ritmo de "passo a passo" sem poluir. */
+  .step-number {
+    position: absolute;
+    top: -0.5rem;
+    right: 0.75rem;
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--fg);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0.75rem;
+    background: var(--primary-soft);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-size: 1.15rem;
+  }
+
+  h3 {
+    font-size: 1.08rem;
+    font-weight: 650;
+    color: var(--fg);
+    margin-bottom: 0.45rem;
+  }
+
+  p {
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Projetos
+   -------------------------------------------------------------------------- */
+
+/*
+ * Um projeto por linha, em largura total. Com dois projetos, a grade de duas
+ * colunas deixava uma célula vazia e a seção parecia incompleta; em linha,
+ * dois projetos lêem como escolha e cada um ganha espaço para a mídia.
+ */
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+
+  .project-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.6rem;
+    min-width: 0;
+  }
+
+  .project-links .btn {
+    border-radius: var(--radius-full);
+  }
+
+  /* `.achievements` e `.chip` são compartilhadas com Experiência e Hero;
+     aqui a escala é menor, então o ajuste fica preso ao card. */
+  .achievements {
+    margin-top: 0.85rem;
+    gap: 0.4rem;
+
+    li {
+      font-size: 0.89rem;
+      line-height: 1.5;
+    }
+  }
+
+  .chip-row {
+    margin-top: 0.9rem;
+  }
+
+  .chip {
+    padding: 0.22rem 0.6rem;
+    font-size: 0.73rem;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  &.featured {
+    border-color: color-mix(in srgb, var(--primary) 32%, var(--border));
+  }
+
+  .project-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+    }
+  }
+
+  .badge-featured {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    background: var(--primary-soft);
+    border-radius: 999px;
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .project-tagline {
+    margin-top: 0.3rem;
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+  }
+}
+
+.project-vitality {
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+
+  .project-body {
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .project-head h3 {
+    font-size: clamp(1.55rem, 3vw, 2.2rem);
+  }
+
+  .project-tagline {
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
+
+  .project-live-link {
+    box-shadow: none;
+  }
+}
+
+.project-rationale {
+  margin-top: 1.15rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-rationale__title {
+  margin-bottom: 0.65rem;
+  color: var(--fg);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.project-rationale__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+
+  article {
+    padding: 0.8rem;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: transform 0.24s var(--bd-ease), border-color 0.24s var(--bd-ease),
+      background 0.24s var(--bd-ease);
+
+    &:hover {
+      background: var(--surface-hover);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+      transform: translateY(-2px);
+    }
+  }
+
+  span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--accent);
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: var(--fg-muted);
+    font-size: 0.8rem;
+    line-height: 1.48;
+  }
+}
+
+/* Coluna esquerda do card: vídeo, pôster ou a miniatura da biblioteca. */
+.project-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  min-height: 280px;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(112px, 0.78fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  padding: 0.45rem;
+  background: var(--bg-elevated);
+
+  figure {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 2px);
+    background: var(--bg);
+  }
+
+  .project-gallery__main {
+    grid-row: span 2;
+  }
+
+  &.project-gallery--single {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    .project-gallery__main {
+      grid-row: auto;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+    transition: transform 0.5s var(--bd-ease);
+  }
+
+  figure:hover img {
+    transform: scale(1.025);
+  }
+}
+
+/* Galeria estática: comunica três fluxos reais sem baixar vídeo. */
+.project-gallery {
+  width: 100%;
+}
+
+/*
+ * Problema e Solução recolhidos: a narrativa continua disponível, mas não
+ * cobra a altura de quem só quer saber o que o projeto entrega.
+ */
+.project-why {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+    list-style: none;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Seta desenhada em CSS: evita depender do ícone da fonte aqui. */
+    &::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translate(-1px, -1px);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      color: var(--primary-strong);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--ring);
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &[open] summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+
+  .project-detail {
+    margin-top: 0.35rem;
+  }
+}
+
+.project-detail {
+  margin-top: 0.9rem;
+
+  dt {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-top: 0.7rem;
+  }
+
+  dd {
+    margin-top: 0.2rem;
+    color: var(--fg-muted);
+    font-size: 0.89rem;
+    line-height: 1.55;
+  }
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.1rem;
+}
+
+.project-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--fg-subtle);
+  font-size: 0.82rem;
+  line-height: 1.5;
+
+  i {
+    margin-top: 0.25rem;
+    font-size: 0.72rem;
+  }
+}
+
+/* Card do design system: destaque sutil por gradiente no topo. */
+.project-ds {
+  position: relative;
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--gradient);
+    z-index: 1;
+  }
+
+  .badge-featured {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+}
+
+/*
+ * Miniatura da bandeira-ui: montada com as próprias peças da biblioteca
+ * (botão, linhas de tabela, linha selecionada) em vez de uma captura, que
+ * desatualiza a cada release.
+ */
+.ds-mock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.4rem;
+  background: var(--bg-elevated);
+}
+
+.ds-mock__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.ds-mock__pill {
+  width: 54px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--primary-strong);
+
+  &--ghost {
+    width: 42px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+  }
+}
+
+.ds-mock__row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+
+  &.is-on {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+}
+
+.ds-mock__cell {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border-strong);
+}
+
+/*
+ * bandeira-ui e o convite do portfólio dividem uma grade 2 colunas com a
+ * mesma altura — duas provas técnicas secundárias, mesmo peso visual.
+ */
+.project-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.75rem;
+}
+
+.project-secondary-grid .project {
+  grid-template-columns: 1fr;
+}
+
+/* Convite ao GitHub: agora um card com o mesmo peso do bandeira-ui ao lado. */
+.project-invite {
+  .project-invite__media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 190px;
+    background: var(--bg-elevated);
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+
+    i {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      background: var(--primary-soft);
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+      font-size: 1.35rem;
+    }
+  }
+
+  .project-body {
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Habilidades
+   -------------------------------------------------------------------------- */
+
+.skill-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.55rem 1.15rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: var(--fg);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  }
+}
+
+.skill-panel {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/*
+ * Uma frase por domínio, e as tecnologias como etiquetas. Sem escala de
+ * proficiência: a lista antiga era uma linha por item com um selo à direita,
+ * o que dava altura e convidava a comparar rótulos que ninguém pode conferir.
+ */
+.skill-group {
+  text-align: center;
+}
+
+.skill-summary {
+  color: var(--fg-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 0 auto 1.5rem;
+  text-wrap: balance;
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+
+  li {
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--fg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Contato
+   -------------------------------------------------------------------------- */
+
+.contact-section {
+  padding-bottom: 7rem;
+}
+
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--gradient);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--fg);
+    margin-bottom: 0.75rem;
+  }
+
+  > p {
+    max-width: 52ch;
+    margin: 0 auto 2.5rem;
+    color: var(--fg-muted);
+    font-size: 1.02rem;
+  }
+}
+
+/* Formulário à esquerda, canais diretos à direita. */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 2rem;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 2rem;
+  border-left: 1px solid var(--border);
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 820px) {
+  /* A mídia passa a ocupar a largura toda, acima do texto. */
+  .project {
+    grid-template-columns: 1fr;
+  }
+
+  .project-media {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-rationale__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-mock {
+    padding: 1.1rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .contact-aside {
+    padding-left: 0;
+    padding-top: 1.5rem;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 2rem 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  p {
+    color: var(--fg-subtle);
+    font-size: 0.86rem;
+  }
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.1rem;
+
+  a {
+    color: var(--fg-muted);
+    font-size: 1.1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Modal de contato
+   -------------------------------------------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(3, 5, 10, 0.72);
+  backdrop-filter: blur(6px);
+  animation: overlayIn 0.22s ease;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem 1.75rem 2rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--fg);
+  }
+
+  .modal-sub {
+    margin-top: 0.35rem;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+  }
+
+  .modal-primary {
+    width: 100%;
+    margin: 1.5rem 0 0.5rem;
+  }
+}
+
+.modal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--border-strong);
+  }
+
+  > i {
+    flex-shrink: 0;
+    width: 22px;
+    color: var(--primary);
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  a {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    color: var(--fg);
+    font-weight: 500;
+    font-size: 0.92rem;
+    word-break: break-word;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .copy-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--fg-subtle);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  i {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .card {
+    padding: 1.35rem;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* Final cascade for the portfolio component's encapsulated base styles. */
+body app-portfolio .section-head.section-head {
+  max-width: 760px;
+  margin: 0 0 clamp(2.25rem, 4.5vw, 3.5rem);
+  text-align: left;
+}
+
+body app-portfolio .section-head.section-head h2:nth-child(n) {
+  max-width: 23ch;
+  margin: 0 0 0.85rem;
+  font-size: clamp(2.05rem, 3.3vw, 3.1rem);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  line-height: 1.06;
+}
+
+body app-portfolio .section-head.section-head p.section-sub.section-sub {
+  max-width: 62ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.1rem);
+  line-height: 1.68;
+}
+
+body app-portfolio .hero-social.hero-social {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+body app-portfolio .hero-social.hero-social .hero-social__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+}
+
+body app-portfolio .hero-social.hero-social .hero-social__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  width: auto;
+  height: auto;
+  min-height: 34px;
+  padding: 0.35rem 0.45rem;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--fg-muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+body app-portfolio .hero-social.hero-social .hero-social__links a::after { content: none; }
+
+body app-portfolio .process-grid.process-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+body app-portfolio .process-step.process-step {
+  display: flex;
+  flex-direction: column;
+  min-height: 272px;
+  padding: 1.35rem 1.35rem 1.5rem;
+  overflow: visible;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+}
+
+body app-portfolio .process-step.process-step:not(:last-child)::after {
+  position: absolute;
+  top: 2.45rem;
+  left: calc(100% + 1px);
+  width: calc(0.9rem - 2px);
+  height: 1px;
+  background: var(--border-strong);
+  content: '';
+}
+
+body app-portfolio .process-step.process-step .process-step__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.35rem;
+}
+
+body app-portfolio .process-step.process-step .step-number {
+  position: static;
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  opacity: 1;
+}
+
+body app-portfolio .process-step.process-step .process-step__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-soft);
+  border: 1px solid color-mix(in srgb, var(--primary) 24%, transparent);
+  border-radius: 50%;
+  color: var(--primary);
+}
+
+body app-portfolio .process-step.process-step > h3 { margin: 0 0 0.6rem; }
+body app-portfolio .process-step.process-step > p { margin: 0; font-size: 0.9rem; }
+
+@media (max-width: 920px) {
+  body app-portfolio .hero-grid.hero-grid { grid-template-columns: minmax(0, 1fr); text-align: left; }
+  body app-portfolio .process-grid.process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body app-portfolio .process-step.process-step:not(:last-child)::after { display: none; }
+}
+
+@media (max-width: 640px) {
+  body app-portfolio .section-head.section-head h2:nth-child(n) { max-width: 18ch; font-size: clamp(1.95rem, 9vw, 2.55rem); }
+  body app-portfolio .hero-grid.hero-grid,
+  body app-portfolio .hero-content.hero-content { width: 100%; min-width: 0; }
+  body app-portfolio .hero-visual.hero-visual { justify-content: center; width: 100%; max-width: 100%; }
+  body app-portfolio .avatar-frame.avatar-frame { width: min(74vw, 290px); margin-inline: auto; }
+  body app-portfolio .avatar-frame.avatar-frame img { width: 100%; height: 340px; }
+  body app-portfolio .hero-social.hero-social { align-items: flex-start; flex-direction: column; }
+  body app-portfolio .metrics-strip.metrics-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    padding: 0;
+  }
+  body app-portfolio .metric.metric {
+    min-width: 0;
+    padding: 1rem 0.7rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  body app-portfolio .metric.metric:nth-child(even) { border-right: 0; }
+  body app-portfolio .metric.metric:nth-last-child(-n + 2) { border-bottom: 0; }
+  body app-portfolio .process-grid.process-grid { grid-template-columns: 1fr; }
+  body app-portfolio .process-step.process-step { min-height: 0; }
+}

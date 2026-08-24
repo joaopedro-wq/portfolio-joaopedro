@@ -22,13 +22,14 @@ export interface Project {
   solution: string;
   highlights: string[];
   tech: string[];
-  video?: string;
-  poster?: string;
+  images?: { src: string; alt: string }[];
   github?: string;
   backend?: string;
   demo?: string;
+  liveDemoLabel?: string;
+  featuredLabel?: string;
   featured?: boolean;
-  /** Aviso exibido no rodapé do card — ex.: código proprietário. */
+  
   note?: string;
 }
 
@@ -101,8 +102,12 @@ export interface SiteContent {
     ctaTalk: string;
     ctaProjects: string;
     ctaCv: string;
-    location: string;
     photoAlt: string;
+    socialLinks: {
+      github: string;
+      linkedin: string;
+      whatsapp: string;
+    };
   };
 
   metrics: Metric[];
@@ -137,6 +142,9 @@ export interface SiteContent {
     sub: string;
     labelProblem: string;
     labelSolution: string;
+    rationaleTitle: string;
+    rationaleProblem: string;
+    rationaleSolution: string;
     /** Rótulo do bloco recolhível que abre Problema e Solução. */
     whyExists: string;
     featured: string;

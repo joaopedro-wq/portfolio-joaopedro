@@ -3,11 +3,9 @@ import { SiteContent } from './content.model';
 export const CONTENT_EN: SiteContent = {
   nav: [
     { id: 'inicio', label: 'Home' },
+    { id: 'projetos', label: 'Projects' },
     { id: 'sobre', label: 'About' },
     { id: 'experiencia', label: 'Experience' },
-    { id: 'processo', label: 'Process' },
-    { id: 'projetos', label: 'Projects' },
-    { id: 'habilidades', label: 'Skills' },
     { id: 'contato', label: 'Contact' },
   ],
 
@@ -25,24 +23,26 @@ export const CONTENT_EN: SiteContent = {
   hero: {
     badge: 'Full-stack developer · Angular & Laravel',
     title:
-      "Hi, I'm <span class=\"gradient-text\">João Pedro</span> — <strong>a full-stack developer with a product mindset</strong>.",
+      'I build <span class="gradient-text">clear web products</span>, from flow to delivery.',
     lead:
-      '<strong>Full-stack developer</strong> with 3+ years of experience in <strong>Angular</strong> and <strong>Laravel</strong>. I turn business problems into clear, functional and maintainable web products — from <strong>Figma flows to implementation and delivery</strong>.',
+      'I’m João Pedro, a <strong>full-stack developer</strong>. I bring product, interface and code together to turn business rules into experiences people can actually use — with <strong>Angular</strong>, <strong>Laravel</strong> and attention to detail.',
     pills: [
       'Angular',
       'TypeScript',
-      'Figma',
-      'UI/UX',
+      'Product & UX',
       'Laravel',
-      'Node.js',
       'Cypress',
-      'PostgreSQL',
+      'APIs',
     ],
     ctaTalk: "Let's talk",
-    ctaProjects: 'See projects',
+    ctaProjects: 'Explore Vitality',
     ctaCv: 'Download CV',
-    location: 'Espírito Santo, Brazil · Available for remote work',
     photoAlt: 'Photo of João Pedro Bandeira',
+    socialLinks: {
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      whatsapp: 'WhatsApp',
+    },
   },
 
   metrics: [
@@ -74,11 +74,11 @@ export const CONTENT_EN: SiteContent = {
 
   about: {
     eyebrow: 'About me',
-    title: 'Product, interface and engineering in one flow',
-    sub: 'I understand the problem, shape the experience and build the solution with attention to technical detail.',
+    title: 'Before code, I understand what needs to work',
+    sub: 'From business context to an experience that reaches the people using it.',
     paragraphs: [
       'I work across product, UX/UI and engineering: I understand business rules, organise flows and turn product decisions into interfaces that work in practice.',
-      'This integrated view helps surface problems early, reduce rework and deliver more consistent experiences — while keeping architecture, performance and maintenance in focus.',
+      'This integrated view helps surface problems early and create more consistent deliveries, without leaving architecture, performance and maintenance for later.',
       'I apply this today at <strong>CoCreator Collab</strong>, working on both ends: the interface in <strong>Angular</strong> and the backend in <strong>Laravel</strong>. The detail of each delivery is under <a href="#experiencia">Experience</a>.',
     ],
     cards: [
@@ -107,8 +107,8 @@ export const CONTENT_EN: SiteContent = {
 
   experience: {
     eyebrow: 'Career',
-    title: 'Professional experience',
-    sub: 'Experiences where I turned product needs into interfaces, integrations and software in production.',
+    title: 'A career built around real problems',
+    sub: 'Each experience broadened my craft: from internal systems to products connected to platforms people use every day.',
     items: [
       {
         role: 'Full-stack Developer & UI/UX',
@@ -160,8 +160,8 @@ export const CONTENT_EN: SiteContent = {
 
   process: {
     eyebrow: 'How I work',
-    title: 'From the problem to a screen in production',
-    sub: 'A simple process to align context, validate decisions and deliver with confidence.',
+    title: 'How I turn context into product',
+    sub: 'A simple process that keeps need, experience and technical quality in the same conversation.',
     steps: [
       {
         icon: 'fas fa-magnifying-glass',
@@ -187,46 +187,48 @@ export const CONTENT_EN: SiteContent = {
   },
 
   projects: {
-    eyebrow: 'Portfolio',
-    title: 'Projects and open-source initiatives',
-    sub: 'Products and tools I built to solve real problems and deepen my engineering practice.',
+    eyebrow: 'Selected work',
+    title: 'Projects that explain how I work',
+    sub: 'Real product, experience and engineering cases — presented with context, not as a collection of technologies.',
     labelProblem: 'Problem',
     labelSolution: 'Solution',
+    rationaleTitle: 'Why Vitality exists',
+    rationaleProblem: 'The challenge',
+    rationaleSolution: 'How Vitality helps',
     whyExists: 'Why it exists',
-    featured: 'Featured',
+    featured: 'Technical highlight',
     code: 'Frontend',
     backendCode: 'Backend',
     liveDemo: 'Live demo',
     playVideo: 'Watch the demo',
     items: [
       {
-        title: 'Vitality PLUS',
-        tagline: 'Full-stack platform for personalised nutrition',
+        title: 'Vitality',
+        tagline: 'An AI-powered meal plan made to fit everyday life.',
         problem:
-          'Keeping track of nutrition means organising profile data, goals, foods and meals in different places, making the routine hard to sustain.',
+          'Keeping track of nutrition can spread goals, meals and nutritional information across different places, making the routine hard to sustain.',
         solution:
-          'Full-stack application that brings nutritional goals, a food catalogue, meal plans and a daily diary into one guided experience.',
+          'An app that uses AI to organise an initial meal plan and lets people adjust meals, foods and portions their own way.',
         highlights: [
-          'Guided quiz with goals calculated using the Mifflin–St Jeor equation',
-          'Food diary with portions, editable history and intake tracking',
-          'Meal plans generated with Google Gemini generative AI',
-          'Laravel REST API with Sanctum authentication, food catalogue and admin area',
+          'AI-organised starting plan based on goals and preferences',
+          'Meal diary with calories, macros and editable history',
+          'Food swaps to adapt the plan to everyday life',
         ],
         tech: [
           'Angular 20',
           'TypeScript',
           'Laravel 11',
-          'PHP',
-          'PostgreSQL / MySQL',
+          'PostgreSQL',
           'Google Gemini',
-          'Tailwind CSS',
+          'Generative AI',
           'bandeira-ui',
-          'PHPUnit',
         ],
-        video: '/vitality-plus.webm',
-        poster: '/vitality-plus-poster.webp',
+        images: [{ src: '/vitality-dashboard.png', alt: 'Vitality dashboard with calorie and macro summary' }],
         github: 'https://github.com/joaopedro-wq/vitality-front',
         backend: 'https://github.com/joaopedro-wq/vitality-Back',
+        demo: 'https://vitality-front.vercel.app/',
+        liveDemoLabel: 'Create my plan',
+        featuredLabel: 'Primary case · AI meal plan',
         featured: true,
       },
     ],
@@ -251,16 +253,16 @@ export const CONTENT_EN: SiteContent = {
       npmUrl: 'https://www.npmjs.com/package/bandeira-ui',
     },
     ctaCard: {
-      title: 'More projects on GitHub',
-      text: 'Experiments, studies and everyday code — always evolving.',
-      button: 'Browse repositories',
+      title: 'This portfolio',
+      text: 'A bilingual personal product with theming, accessible navigation and a narrative that prioritises verifiable work.',
+      button: 'Explore other projects',
     },
   },
 
   skills: {
-    eyebrow: 'Stack',
-    title: 'Skills & Tools',
-    sub: 'Technologies and practices I apply when building web products.',
+    eyebrow: 'Capabilities',
+    title: 'Technology in the context where it creates value',
+    sub: 'The practices I connect to build clear, functional products that are easier to evolve.',
     tablistLabel: 'Domains',
     groups: [
       {
@@ -325,8 +327,8 @@ export const CONTENT_EN: SiteContent = {
 
   contact: {
     eyebrow: 'Contact',
-    title: 'Let’s talk',
-    text: 'If you would like to talk about product, technology, interface projects or a partnership, write below or pick the channel you prefer. I reply within 24 hours.',
+    title: "Let's talk about the next product?",
+    text: 'If you need someone to turn business context into a clear and sustainable web experience, we can talk.',
     whatsapp: 'Message on WhatsApp',
     email: 'Send an email',
     linkedin: 'LinkedIn',

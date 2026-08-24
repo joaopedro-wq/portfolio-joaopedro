@@ -101,24 +101,26 @@
         </div>
 
         <div class="hero-social stagger-item">
-          <a [href]="github" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a [href]="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a [href]="whatsapp()" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <span class="hero-location">
-            <i class="fas fa-location-dot"></i> {{ c().hero.location }}
-          </span>
+          <div class="hero-social__links">
+            <a [href]="github" target="_blank" rel="noopener" [attr.aria-label]="c().hero.socialLinks.github">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>{{ c().hero.socialLinks.github }}</span>
+            </a>
+            <a [href]="linkedin" target="_blank" rel="noopener" [attr.aria-label]="c().hero.socialLinks.linkedin">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              <span>{{ c().hero.socialLinks.linkedin }}</span>
+            </a>
+            <a [href]="whatsapp()" target="_blank" rel="noopener" [attr.aria-label]="c().hero.socialLinks.whatsapp">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span>{{ c().hero.socialLinks.whatsapp }}</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="hero-visual stagger-item">
         <div class="avatar-frame">
-          <img src="/user.jpg" [alt]="c().hero.photoAlt" width="280" height="280" />
+          <img src="/user-portrait-v2.png" [alt]="c().hero.photoAlt" width="1024" height="1536" />
         </div>
       </div>
     </div>
@@ -168,16 +170,16 @@
   </section>
 
   <!-- ========================= EXPERIÊNCIA ========================= -->
-  <section id="experiencia" class="section section-alt">
+  <section id="experiencia" class="section section-alt story-section">
     <div class="container">
-      <header class="section-head" bdReveal>
+      <header class="section-head section-head--story" bdReveal>
         <span class="eyebrow">{{ c().experience.eyebrow }}</span>
         <h2>{{ c().experience.title }}</h2>
         <p class="section-sub">{{ c().experience.sub }}</p>
       </header>
 
       <ol class="timeline">
-        @for (exp of c().experience.items; track exp.company; let i = $index) {
+        @for (exp of c().experience.items.slice().reverse(); track exp.company; let i = $index) {
           <li class="timeline-item">
             <span class="timeline-marker" [class.current]="exp.current" aria-hidden="true"></span>
             <article class="card timeline-card" bdReveal="right" [revealDelay]="i * 120">
@@ -188,7 +190,7 @@
               <p class="company"><i class="fas fa-building"></i> {{ exp.company }}</p>
               <p class="summary">{{ exp.summary }}</p>
               <ul class="achievements">
-                @for (a of exp.achievements; track a) {
+                @for (a of exp.achievements.slice(0, 3); track a) {
                   <li><i class="fas fa-check"></i> {{ a }}</li>
                 }
               </ul>
@@ -205,9 +207,9 @@
   </section>
 
   <!-- ========================== PROCESSO ========================== -->
-  <section id="processo" class="section">
+  <section id="processo" class="section process-section">
     <div class="container">
-      <header class="section-head" bdReveal>
+      <header class="section-head section-head--story section-head--process" bdReveal>
         <span class="eyebrow">{{ c().process.eyebrow }}</span>
         <h2>{{ c().process.title }}</h2>
         <p class="section-sub">{{ c().process.sub }}</p>
@@ -216,8 +218,10 @@
       <ol class="process-grid">
         @for (step of c().process.steps; track step.title; let i = $index) {
           <li class="process-step card" bdReveal [revealDelay]="i * 110">
-            <span class="step-number" aria-hidden="true">{{ i + 1 }}</span>
-            <i [class]="step.icon" aria-hidden="true"></i>
+            <div class="process-step__meta">
+              <span class="step-number" aria-hidden="true">0{{ i + 1 }}</span>
+              <span class="process-step__icon"><i [class]="step.icon" aria-hidden="true"></i></span>
+            </div>
             <h3>{{ step.title }}</h3>
             <p>{{ step.text }}</p>
           </li>
@@ -227,119 +231,35 @@
   </section>
 
   <!-- ========================== PROJETOS ========================== -->
-  <section id="projetos" class="section section-alt">
+  <section id="projetos" class="section section-alt projects-section">
     <div class="container">
-      <header class="section-head" bdReveal>
+      <header class="section-head section-head--story section-head--projects" bdReveal>
         <span class="eyebrow">{{ c().projects.eyebrow }}</span>
         <h2>{{ c().projects.title }}</h2>
         <p class="section-sub" [innerHTML]="c().projects.sub"></p>
       </header>
 
       <div class="project-grid">
-        <!--
-          Design system em primeiro: é o projeto de maior peso técnico e o único
-          com artefato público verificável (documentação, código e pacote).
-        -->
-        @if (c().projects.designSystem; as ds) {
-          <article class="card project project-ds featured" bdReveal>
-            <!--
-              A lib é a única coisa do portfólio que pode ser mostrada em vez
-              de descrita: a composição abaixo é feita com as próprias peças
-              (botão, tabela com linha selecionada), não uma captura de tela.
-            -->
-            <div class="project-media" aria-hidden="true">
-              <div class="ds-mock">
-                <div class="ds-mock__bar">
-                  <span class="ds-mock__pill"></span>
-                  <span class="ds-mock__pill ds-mock__pill--ghost"></span>
-                </div>
-                @for (linha of dsMockRows; track linha.a) {
-                  <div class="ds-mock__row" [class.is-on]="linha.on">
-                    <span class="ds-mock__cell" [style.width.%]="linha.a"></span>
-                    <span class="ds-mock__cell" [style.width.%]="linha.b"></span>
-                  </div>
-                }
-              </div>
-            </div>
-
-            <div class="project-body">
-              <div class="project-head">
-                <h3>{{ ds.name }}</h3>
-                <span class="badge-featured">
-                  <i class="fas fa-swatchbook"></i> {{ c().projects.featured }}
-                </span>
-              </div>
-              <p class="project-tagline">{{ ds.tagline }}</p>
-
-              <ul class="achievements">
-                @for (h of ds.highlights; track h) {
-                  <li><i class="fas fa-check"></i> {{ h }}</li>
-                }
-              </ul>
-
-              <div class="chip-row">
-                @for (t of ds.chips; track t) {
-                  <span class="chip">{{ t }}</span>
-                }
-              </div>
-
-              <details class="project-why">
-                <summary>{{ c().projects.whyExists }}</summary>
-                <dl class="project-detail">
-                  <dt>{{ c().projects.labelProblem }}</dt>
-                  <dd>{{ ds.problem }}</dd>
-                  <dt>{{ c().projects.labelSolution }}</dt>
-                  <dd>{{ ds.solution }}</dd>
-                </dl>
-              </details>
-
-              <div class="project-links">
-                <a [href]="ds.docsUrl" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
-                  <i class="fas fa-book"></i> {{ ds.cta }}
-                </a>
-                <a [href]="ds.githubUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fab fa-github"></i> {{ ds.ctaCode }}
-                </a>
-                <a [href]="ds.npmUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                  <i class="fab fa-npm"></i> {{ ds.ctaNpm }}
-                </a>
-              </div>
-            </div>
-          </article>
-        }
-
         @for (project of c().projects.items; track project.title; let i = $index) {
           <article
             class="card project"
             [class.featured]="project.featured"
-            bdReveal
-            [revealDelay]="(i + 1) * 120"
+            [class.project-vitality]="project.featured"
+            bdReveal="left"
+            [revealDelay]="(i + 1) * 100"
           >
-            @if (project.video; as videoSrc) {
-              <div class="project-media">
-                @if (videoAtivo() === videoSrc) {
-                  <video
-                    controls
-                    autoplay
-                    playsinline
-                    preload="metadata"
-                    [poster]="project.poster ?? null"
-                    [src]="videoSrc"
-                  ></video>
-                } @else {
-                  <button
-                    class="video-poster"
-                    type="button"
-                    (click)="ativarVideo(videoSrc)"
-                    [attr.aria-label]="c().projects.playVideo + ' — ' + project.title"
-                  >
-                    @if (project.poster; as poster) {
-                      <!-- Frame estático: o vídeo (MB) só baixa quando pedido. -->
-                      <img [src]="poster" alt="" loading="lazy" decoding="async" />
-                    }
-                    <span class="play-icon"><i class="fas fa-play"></i></span>
-                    <span class="play-label">{{ c().projects.playVideo }}</span>
-                  </button>
+            @if (project.images?.length) {
+              <div class="project-media project-gallery" [class.project-gallery--single]="project.images?.length === 1">
+                @for (image of project.images; track image.src; let index = $index) {
+                  <figure [class.project-gallery__main]="index === 0">
+                    <img
+                      [src]="image.src"
+                      [alt]="image.alt"
+                      [attr.loading]="index === 0 ? 'eager' : 'lazy'"
+                      [attr.fetchpriority]="index === 0 ? 'high' : null"
+                      decoding="async"
+                    />
+                  </figure>
                 }
               </div>
             }
@@ -349,7 +269,7 @@
                 <h3>{{ project.title }}</h3>
                 @if (project.featured) {
                   <span class="badge-featured">
-                    <i class="fas fa-star"></i> {{ c().projects.featured }}
+                    <i class="fas fa-star"></i> {{ project.featuredLabel ?? c().projects.featured }}
                   </span>
                 }
               </div>
@@ -367,30 +287,54 @@
                 }
               </div>
 
-              <details class="project-why">
-                <summary>{{ c().projects.whyExists }}</summary>
-                <dl class="project-detail">
-                  <dt>{{ c().projects.labelProblem }}</dt>
-                  <dd>{{ project.problem }}</dd>
-                  <dt>{{ c().projects.labelSolution }}</dt>
-                  <dd>{{ project.solution }}</dd>
-                </dl>
-              </details>
+              @if (project.featured) {
+                <section class="project-rationale" [attr.aria-label]="c().projects.rationaleTitle">
+                  <p class="project-rationale__title">{{ c().projects.rationaleTitle }}</p>
+                  <div class="project-rationale__grid">
+                    <article>
+                      <span>{{ c().projects.rationaleProblem }}</span>
+                      <p>{{ project.problem }}</p>
+                    </article>
+                    <article>
+                      <span>{{ c().projects.rationaleSolution }}</span>
+                      <p>{{ project.solution }}</p>
+                    </article>
+                  </div>
+                </section>
+              }
+
+              @if (!project.featured) {
+                <details class="project-why">
+                  <summary>{{ c().projects.whyExists }}</summary>
+                  <dl class="project-detail">
+                    <dt>{{ c().projects.labelProblem }}</dt>
+                    <dd>{{ project.problem }}</dd>
+                    <dt>{{ c().projects.labelSolution }}</dt>
+                    <dd>{{ project.solution }}</dd>
+                  </dl>
+                </details>
+              }
 
               <div class="project-links">
-                @if (project.github) {
+                @if (project.demo) {
+                  <a
+                    [href]="project.demo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary btn-sm project-live-link"
+                  >
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    {{ project.liveDemoLabel ?? c().projects.liveDemo }}
+                  </a>
+                }
+                @if (!project.featured && project.github) {
                   <a [href]="project.github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
                     <i class="fab fa-github"></i> {{ c().projects.code }}
                   </a>
                 }
-                @if (project.backend) {
+                @if (!project.featured && project.backend) {
                   <a [href]="project.backend" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
                     <i class="fas fa-server"></i> {{ c().projects.backendCode }}
-                  </a>
-                }
-                @if (project.demo) {
-                  <a [href]="project.demo" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-                    <i class="fas fa-arrow-up-right-from-square"></i> {{ c().projects.liveDemo }}
                   </a>
                 }
                 @if (project.note) {
@@ -401,65 +345,159 @@
           </article>
         }
 
-        <!--
-          Em linha, e não mais como card: na grade antiga ele tapava o buraco
-          de uma coluna vazia — função que deixou de existir.
-        -->
-        <article class="project-invite" bdReveal [revealDelay]="180">
-          <i class="fas fa-code-branch"></i>
-          <div>
-            <h3>{{ c().projects.ctaCard.title }}</h3>
-            <p>{{ c().projects.ctaCard.text }}</p>
-          </div>
-          <a [href]="github" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
-            <i class="fab fa-github"></i> {{ c().projects.ctaCard.button }}
-          </a>
-        </article>
+        <!-- bandeira-ui e o próprio portfólio: duas provas técnicas menores, lado a lado com o mesmo peso visual. -->
+        <div class="project-secondary-grid">
+          @if (c().projects.designSystem; as ds) {
+            <article class="card project project-ds featured" bdReveal="right">
+              <!--
+                A lib é a única coisa do portfólio que pode ser mostrada em vez
+                de descrita: a composição abaixo é feita com as próprias peças
+                (botão, tabela com linha selecionada), não uma captura de tela.
+              -->
+              <div class="project-media" aria-hidden="true">
+                <div class="ds-mock">
+                  <div class="ds-mock__bar">
+                    <span class="ds-mock__pill"></span>
+                    <span class="ds-mock__pill ds-mock__pill--ghost"></span>
+                  </div>
+                  @for (linha of dsMockRows; track linha.a) {
+                    <div class="ds-mock__row" [class.is-on]="linha.on">
+                      <span class="ds-mock__cell" [style.width.%]="linha.a"></span>
+                      <span class="ds-mock__cell" [style.width.%]="linha.b"></span>
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <div class="project-body">
+                <div class="project-head">
+                  <h3>{{ ds.name }}</h3>
+                  <span class="badge-featured">
+                    <i class="fas fa-swatchbook"></i> {{ c().projects.featured }}
+                  </span>
+                </div>
+                <p class="project-tagline">{{ ds.tagline }}</p>
+
+                <ul class="achievements">
+                  @for (h of ds.highlights; track h) {
+                    <li><i class="fas fa-check"></i> {{ h }}</li>
+                  }
+                </ul>
+
+                <div class="chip-row">
+                  @for (t of ds.chips; track t) {
+                    <span class="chip">{{ t }}</span>
+                  }
+                </div>
+
+                <details class="project-why">
+                  <summary>{{ c().projects.whyExists }}</summary>
+                  <dl class="project-detail">
+                    <dt>{{ c().projects.labelProblem }}</dt>
+                    <dd>{{ ds.problem }}</dd>
+                    <dt>{{ c().projects.labelSolution }}</dt>
+                    <dd>{{ ds.solution }}</dd>
+                  </dl>
+                </details>
+
+                <div class="project-links">
+                  <a [href]="ds.docsUrl" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                    <i class="fas fa-book"></i> {{ ds.cta }}
+                  </a>
+                  <a [href]="ds.githubUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    <i class="fab fa-github"></i> {{ ds.ctaCode }}
+                  </a>
+                  <a [href]="ds.npmUrl" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+                    <i class="fab fa-npm"></i> {{ ds.ctaNpm }}
+                  </a>
+                </div>
+              </div>
+            </article>
+          }
+
+          <article class="card project project-invite" bdReveal="left">
+            <div class="project-media project-invite__media" aria-hidden="true">
+              <i class="fas fa-window-maximize"></i>
+            </div>
+            <div class="project-body">
+              <div class="project-head">
+                <h3>{{ c().projects.ctaCard.title }}</h3>
+              </div>
+              <p class="project-tagline">{{ c().projects.ctaCard.text }}</p>
+
+              <div class="chip-row">
+                <span class="chip">Angular 20</span>
+                <span class="chip">PT / EN</span>
+                <span class="chip">SCSS</span>
+              </div>
+
+              <div class="project-links">
+                <a [href]="github" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+                  <i class="fab fa-github"></i> {{ c().projects.ctaCard.button }}
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================= HABILIDADES ========================= -->
-  <section id="habilidades" class="section">
+  <section id="habilidades" class="section skills-section">
     <div class="container">
-      <header class="section-head" bdReveal>
+      <header class="section-head section-head--story section-head--skills" bdReveal>
         <span class="eyebrow">{{ c().skills.eyebrow }}</span>
         <h2>{{ c().skills.title }}</h2>
         <p class="section-sub">{{ c().skills.sub }}</p>
       </header>
 
-      <div class="skill-chips" role="tablist" [attr.aria-label]="c().skills.tablistLabel" bdReveal>
-        @for (group of c().skills.groups; track group.id) {
-          <button
-            type="button"
-            role="tab"
-            [id]="'tab-' + group.id"
-            [attr.aria-selected]="selectedTab() === group.id"
-            [attr.aria-controls]="'panel-' + group.id"
-            [class.active]="selectedTab() === group.id"
-            (click)="selectTab(group.id)"
-          >
-            <i [class]="group.icon"></i> {{ group.label }}
-          </button>
-        }
-      </div>
+      <div class="skills-deck" bdReveal>
+        <div
+          class="skills-deck-stage"
+          #skillStage
+          role="tablist"
+          [attr.aria-label]="c().skills.tablistLabel"
+          (mousemove)="onSkillDeckPointerMove($event, skillStage)"
+          (mouseleave)="onSkillDeckPointerLeave()"
+        >
+          @for (group of c().skills.groups; track group.id; let i = $index) {
+            <button
+              type="button"
+              role="tab"
+              class="skills-card"
+              [id]="'skill-card-' + i"
+              [class.active]="activeSkillIndex() === i"
+              [attr.aria-selected]="activeSkillIndex() === i"
+              [attr.aria-controls]="'skill-panel-' + group.id"
+              [attr.tabindex]="activeSkillIndex() === i ? 0 : -1"
+              [style]="skillCardStyle(i)"
+              (click)="setActiveSkill(i)"
+              (keydown)="onSkillTabKeydown($event, c().skills.groups.length)"
+            >
+              <span class="skills-card__icon"><i [class]="group.icon" aria-hidden="true"></i></span>
+              <strong>{{ group.label }}</strong>
+              <span class="skills-card__count">{{ group.items.length }} itens</span>
+            </button>
+          }
+        </div>
 
-      <div
-        class="skill-panel"
-        role="tabpanel"
-        [id]="'panel-' + activeGroup().id"
-        [attr.aria-labelledby]="'tab-' + activeGroup().id"
-      >
-        @for (group of c().skills.groups; track group.id) {
-          @if (selectedTab() === group.id) {
-            <div class="skill-group" [@fadeSlide]>
-              <p class="skill-summary">{{ group.summary }}</p>
-              <ul class="skill-list" [@listStagger]>
-                @for (item of group.items; track item) {
-                  <li>{{ item }}</li>
+        @for (group of c().skills.groups; track group.id; let i = $index) {
+          @if (activeSkillIndex() === i) {
+            <article
+              class="skills-deck-panel"
+              role="tabpanel"
+              [id]="'skill-panel-' + group.id"
+              [attr.aria-labelledby]="'skill-card-' + i"
+            >
+              <h3><i [class]="group.icon" aria-hidden="true"></i>{{ group.label }}</h3>
+              <p>{{ group.summary }}</p>
+              <ul class="skills-deck-badges">
+                @for (item of group.items; track item; let bi = $index) {
+                  <li [style.--i]="bi">{{ item }}</li>
                 }
               </ul>
-            </div>
+            </article>
           }
         }
       </div>
@@ -478,14 +516,17 @@
           <app-contact-form [t]="c().contact.form" [email]="email" />
 
           <div class="contact-aside">
-            <a class="btn btn-primary" [href]="whatsapp()" target="_blank" rel="noopener">
+            <a class="btn btn-primary" [href]="whatsapp()" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-whatsapp"></i> {{ c().contact.whatsapp }}
             </a>
             <a class="btn btn-ghost" [href]="'mailto:' + email">
               <i class="fas fa-envelope"></i> {{ c().contact.email }}
             </a>
-            <a class="btn btn-ghost" [href]="linkedin" target="_blank" rel="noopener">
+            <a class="btn btn-ghost" [href]="linkedin" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-linkedin-in"></i> {{ c().contact.linkedin }}
+            </a>
+            <a class="btn btn-ghost" [href]="github" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i> GitHub
             </a>
           </div>
         </div>

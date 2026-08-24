@@ -20,7 +20,7 @@ import { BdRevealDirective, BdCountUpDirective } from 'bandeira-ui';
 
 import { ContactFormComponent } from '../../shared/contact-form.component';
 import { I18nService } from '../../shared/i18n.service';
-import type { SectionId, SkillGroup } from '../../shared/content.model';
+import type { SectionId } from '../../shared/content.model';
 
 @Component({
   selector: 'app-portfolio',
@@ -42,26 +42,6 @@ import type { SectionId, SkillGroup } from '../../shared/content.model';
           ],
           { optional: true }
         ),
-      ]),
-    ]),
-    trigger('listStagger', [
-      transition(':enter', [
-        query(
-          'li',
-          [
-            style({ opacity: 0, transform: 'translateX(-10px)' }),
-            stagger(55, [
-              animate('380ms cubic-bezier(0.16, 1, 0.3, 1)', style({ opacity: 1, transform: 'none' })),
-            ]),
-          ],
-          { optional: true }
-        ),
-      ]),
-    ]),
-    trigger('fadeSlide', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(8px)' }),
-        animate('320ms ease-out', style({ opacity: 1, transform: 'none' })),
       ]),
     ]),
     trigger('modalAnim', [
@@ -119,42 +99,13 @@ export class PortfolioComponent {
   readonly cvUrl = '/curriculo-joao-pedro-bandeira.pdf';
   readonly cvDisponivel = false;
 
-  /* ---------------------------------------------------------------- */
-  /* Vídeo dos projetos                                               */
-  /* ---------------------------------------------------------------- */
 
-  /**
-   * Larguras das células da miniatura da bandeira-ui, em porcentagem.
-   * Ficam aqui, e não no template, para o `@for` ter algo estável a rastrear.
-   */
   readonly dsMockRows = [
     { a: 34, b: 22, on: false },
     { a: 44, b: 18, on: true },
     { a: 28, b: 30, on: false },
     { a: 38, b: 20, on: false },
   ] as const;
-
-  /** Vídeo já liberado (evita baixar MB antes do usuário pedir). */
-  readonly videoAtivo = signal<string | null>(null);
-
-  ativarVideo(src: string) {
-    this.videoAtivo.set(src);
-  }
-
-  /* ---------------------------------------------------------------- */
-  /* Habilidades                                                      */
-  /* ---------------------------------------------------------------- */
-
-  readonly selectedTab = signal<string>('frontend');
-
-  selectTab(id: string) {
-    this.selectedTab.set(id);
-  }
-
-  readonly activeGroup = computed<SkillGroup>(() => {
-    const grupos = this.c().skills.groups;
-    return grupos.find((g) => g.id === this.selectedTab()) ?? grupos[0];
-  });
 
   /* ---------------------------------------------------------------- */
   /* Navegação                                                        */
@@ -256,4 +207,68 @@ export class PortfolioComponent {
   }
 
   readonly anoAtual = new Date().getFullYear();
+
+  /* ---------------------------------------------------------------- */
+  /* Competências — baralho em leque, sempre todo visível             */
+  /* ---------------------------------------------------------------- */
+
+  readonly activeSkillIndex = signal(0);
+
+  /** Posição horizontal do cursor sobre o leque (0–1); só dá um leve "puxão" magnético. */
+  private readonly skillPointerRatio = signal(0.5);
+
+  /** Em telas estreitas o leque encolhe o espaçamento para não vazar da viewport. */
+  private readonly skillDeckCompact = signal(
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
+
+  @HostListener('window:resize')
+  onSkillDeckResize() {
+    this.skillDeckCompact.set(window.innerWidth < 640);
+  }
+
+  setActiveSkill(index: number) {
+    this.activeSkillIndex.set(index);
+  }
+
+  /** Setas do teclado navegam entre as cartas do leque. */
+  onSkillTabKeydown(event: KeyboardEvent, total: number) {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const delta = event.key === 'ArrowRight' ? 1 : -1;
+    const next = (this.activeSkillIndex() + delta + total) % total;
+    this.activeSkillIndex.set(next);
+    const card = this.document.getElementById(`skill-card-${next}`);
+    card?.focus();
+  }
+
+  onSkillDeckPointerMove(event: MouseEvent, stage: HTMLElement) {
+    const rect = stage.getBoundingClientRect();
+    this.skillPointerRatio.set((event.clientX - rect.left) / rect.width);
+  }
+
+  onSkillDeckPointerLeave() {
+    this.skillPointerRatio.set(0.5);
+  }
+
+  /**
+   * Cada carta fica sempre visível em leque; a ativa fica sempre centralizada
+   * (a distância é medida pelo caminho mais curto no círculo de grupos, então
+   * as outras cartas "dançam" para se reorganizar em vez de empilhar de lado).
+   */
+  skillCardStyle(index: number): string {
+    const total = this.c().skills.groups.length;
+    let offset = index - this.activeSkillIndex();
+    if (offset > total / 2) offset -= total;
+    if (offset < -total / 2) offset += total;
+
+    const factor = this.skillDeckCompact() ? 0.6 : 1;
+    const skew = (this.skillPointerRatio() - 0.5) * 10 * (offset === 0 ? 0.3 : 1);
+    const x = (offset * 56 + skew) * factor;
+    const y = Math.abs(offset) * 10 * factor;
+    const rot = offset * 6;
+    const scale = offset === 0 ? 1 : 1 - Math.min(Math.abs(offset), 3) * 0.045;
+    const z = 10 - Math.abs(offset);
+    return `transform: translateX(${x}px) translateY(${y}px) rotate(${rot}deg) scale(${scale}); z-index: ${z};`;
+  }
 }
